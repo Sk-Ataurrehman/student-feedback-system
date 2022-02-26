@@ -1,0 +1,163 @@
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Version: 2.1
+* Author: Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add Student | MHSSP Feedback System</title>
+    <link href="/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/master.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        
+        <!-- sidebar navigation component -->
+        <%-include('../components/navbar')%>
+        <!-- end of sidebar component -->
+        <div id="body" class="active">
+            <!-- navbar navigation component -->
+            <%-include('../components/header')%>
+            <!-- end of navbar navigation -->
+            <div class="content">
+                <div class="container">
+                    <div class="page-title">
+                        <h3>Add Student</h3>
+                    </div>
+                    <div class="row">
+                        
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">Add New Student</div>
+                                <div class="card-body">
+                                    <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                                        <div class="row g-2">
+                                            <div class="mb-3 col-md-4">
+                                                <label for="rollno" class="form-label">Roll Number</label>
+                                                <input type="text" class="form-control" name="rollno" placeholder="Roll Number" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Roll No.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="name" class="form-label">Name</label>
+                                                <input type="text" class="form-control" name="name" placeholder="Name" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Name.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Email.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="password" class="form-label">Student Password</label>
+                                                <input type="password" class="form-control" name="password" placeholder="Student Password" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Student Password.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="parent_email" class="form-label">Parent Email</label>
+                                                <input type="email" class="form-control" name="parent_email" placeholder="Parent Email" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Parent Email.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="department" class="form-label">Department</label>
+                                                <select name="department" class="form-select" required>
+                                                    <option value="" selected>Choose Department</option>
+                                                    <option value="Computer Engineering">Computer Engineering</option>
+                                                    <option value="Information Technology">Information Technology</option>
+                                                    <option value="Electronics">Electronics</option>
+                                                </select>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please select Item Type.</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="mb-3 col-md-8">
+                                                <label for="address" class="form-label">Address</label>
+                                                <input type="text" class="form-control" name="address" placeholder="Address" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Address.</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <%if(exist){%>
+                                            <div style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                                                Student Already exists!
+                                            </div>
+                                        <% } %>
+
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Student</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/javascripts/form-validator.js"></script>
+    <script src="/javascripts/script.js"></script>
+
+    <script>
+        var cm = document.getElementById('isizecm');
+        var inch = document.getElementById('isizein');
+        
+
+        function findin(){
+            var cm1 = cm.value.split(' X ');
+            in1 = parseFloat(cm1[0])*0.3937;
+            in2 = parseFloat(cm1[1])*0.3937;
+            inch.value = in1.toFixed(2)+' X '+in2.toFixed(2);
+            findgrosswt()
+        }
+
+        function findgrosswt(){
+            var cms = cm.value.split('X');
+            var cm1 = parseFloat(cms[0]);
+            var cm2 = parseFloat(cms[1]);
+            var gsm = parseInt(document.getElementById('gsm').value);
+            var no_of_sheets = parseInt(document.getElementById('no_of_sheets').value);
+            var pktgrossweight = document.getElementById("pktgrossweight");
+
+            if(typeof cms!=='undefined' && typeof gsm!=='undefined' && typeof no_of_sheets!=='undefined'){
+                var unround = (cm1*cm2*gsm*no_of_sheets)/10000000
+                pktgrossweight.value = unround.toFixed(2);
+            }
+            
+        }
+
+        document.getElementById('grp').onchange= function(){
+            alert('in');
+
+           
+
+        }
+    </script>
+
+</body>
+
+</html>

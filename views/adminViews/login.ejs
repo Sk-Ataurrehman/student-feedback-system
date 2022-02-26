@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Version: 2.1
+* Author: Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login | Bootstrap Simple Admin Template</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/auth.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="auth-content">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <img class="brand" src="/images/logo.png" width="75%" alt="bootstraper logo">
+                    </div>
+                    <h5 class="mb-4 ">Student Feedback System</h5>
+                    <h6 class="mb-4 text-muted">Admin Login</h6>
+                    <form action="/admin-feedback/login" method="post">
+                        <div class="mb-3 text-start">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name='password' placeholder="Password" required>
+                        </div>
+
+                        <%if(valErr){%>
+                            <div style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                                Authentication Failed!
+                            </div>
+                        <% } %>
+                        
+                        <button class="btn btn-primary shadow-2 mb-4">Login</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

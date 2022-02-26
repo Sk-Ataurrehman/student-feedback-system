@@ -1,0 +1,196 @@
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Version: 2.1
+* Author: Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stock Item Master | Edit Item</title>
+    <link href="/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/master.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        
+        <!-- sidebar navigation component -->
+        <%-include('../../components/navbar')%>
+        <!-- end of sidebar component -->
+        <div id="body" class="active">
+            <!-- navbar navigation component -->
+            <%-include('../../components/header')%>
+            <!-- end of navbar navigation -->
+            <div class="content">
+                <div class="container">
+                    <div class="page-title">
+                        <h3>Edit Item</h3>
+                    </div>
+                    <div class="row">
+                        
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/admin-raza/masters/item-master/edit-item" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                                        <div class="row g-2">
+                                            <div class="mb-3 col-md-4">
+                                                <label for="icode" class="form-label">Item code</label>
+                                                <input type="text" class="form-control" name="icode" value="<%=itemcode%>" placeholder="Item code" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter item code.</div>
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+                                                <label for="iquality" class="form-label">Item Quality</label>
+                                                <input type="text" class="form-control" name="iquality" value="<%=quality%>" placeholder="Item Quality" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Item Quality.</div>
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+                                                <label for="isizecm" class="form-label">Size In CMs</label>
+                                                <input type="text" id="isizecm" class="form-control" onchange="findin()" name="isizecm" value="<%=size_cm%>" placeholder="Size in CMs" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter size in cms.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="igsm" class="form-label">GSM</label>
+                                                <input type="number" id="gsm" class="form-control" onchange="findgrosswt()" name="igsm" value="<%=gsm%>" placeholder="GSM" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter GSM.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="isizein" class="form-label">Size in Inches</label>
+                                                <input type="text" id="isizein" class="form-control" name="isizein" value="<%=size_in%>" placeholder="Size in Inches" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter size in inches.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="noofsheets" class="form-label">Number of sheets per Pkt./Gross</label>
+                                                <input type="number" id="no_of_sheets" class="form-control" onchange="findgrosswt()" name="noofsheets" value="<%=no_of_sheets%>" placeholder="Number of sheets per Pkt./Gross" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Number of sheets per Pkt./Gross.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="pktgrossweight" class="form-label">Pkt./Gross Weight</label>
+                                                <input type="number" id="pktgrossweight" class="form-control" name="pktgrossweight" value="<%=gross_weight%>" placeholder="Pkt./Gross Weight" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter Pkt./Gross Weight.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="noofpackets" class="form-label">No of Grs/Pkts in per Bundle</label>
+                                                <input type="number" class="form-control" name="noofpackets" value="<%=no_of_pkts%>" placeholder="No of Grs/Pkts in per Bundle" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter No of Grs/Pkts in per Bundle.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="itype" class="form-label">Item Type</label>
+                                                <select name="itype" id="item_type" class="form-select" required>
+                                                    <option value="" selected>Choose Item Type</option>
+                                                    <option value="Reel">Reel</option>
+                                                    <option value="Patti">Patti</option>
+                                                    <option value="Sheet">Sheet</option>
+                                                </select>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please select Item Type.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="qualitygrp" class="form-label">Quality Group</label>
+                                                <select name="qualitygrp" id="quality_group" class="form-select" required>
+                                                    <option value="" selected>Choose Quality Group</option>
+                                                    <% itemgroup.forEach(function(element){ %>
+                                                    <option value="<%=element.item_group_desc%>"><%=element.item_group_desc%></option>
+                                                    <% }); %>
+                                                </select>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please select Quality Group.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="hsncode" class="form-label">HSN Code</label>
+                                                <input type="text" class="form-control" name="hsncode" value="<%=hsn_code%>" placeholder="HSN Code" required>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter HSN Code.</div>
+                                            </div>
+
+                                            <div class="mb-3 col-md-4">
+                                                <label for="itype" class="form-label">Item Status</label>
+                                                <select name="istatus" id="item_status" class="form-select" required>
+                                                    <option value="" selected>Choose Item Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Closed">Closed</option>
+                                                </select>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please select Item Status.</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <input type="hidden" name="itemId" value='<%=id%>'/>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-pen"></i> Edit Item</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/javascripts/form-validator.js"></script>
+    <script src="/javascripts/script.js"></script>
+    <script>
+        var cm = document.getElementById('isizecm');
+        var inch = document.getElementById('isizein');
+        
+        let item_status = document.getElementById('item_status');
+        let item_type = document.getElementById('item_type');
+        let quality_group = document.getElementById('quality_group');
+
+        item_status.value= '<%=item_status%>';
+        item_type.value= '<%=item_type%>';
+        quality_group.value= '<%=quality_group%>';
+
+        function findin(){
+            var cm1 = cm.value.split(' X ');
+            in1 = parseFloat(cm1[0])*0.3937;
+            in2 = parseFloat(cm1[1])*0.3937;
+            inch.value = in1+' X '+in2;
+
+            findgrosswt()
+        }
+
+        function findgrosswt(){
+            var cms = cm.value.split('X');
+            var cm1 = parseFloat(cms[0]);
+            var cm2 = parseFloat(cms[1]);
+            var gsm = parseInt(document.getElementById('gsm').value);
+            var no_of_sheets = parseInt(document.getElementById('no_of_sheets').value);
+            var pktgrossweight = document.getElementById("pktgrossweight");
+
+            if(typeof cms!=='undefined' && typeof gsm!=='undefined' && typeof no_of_sheets!=='undefined'){
+                pktgrossweight.value = (cm1*cm2*gsm*no_of_sheets)/10000000;
+            }
+            
+        }
+    </script>
+
+</body>
+
+</html>
