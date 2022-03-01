@@ -1,154 +1,82 @@
-<!doctype html>
-<!-- 
-* Bootstrap Simple Admin Template
-* Version: 2.1
-* Author: Alexis Luna
-* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
--->
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard | MHSSP Feedback System</title>
-    <link href="/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/master.css" rel="stylesheet">
-    <link href="/vendor/flagiconcss/css/flag-icon.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin Dashboard | Feedback System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/images/favicon.png" rel="icon">
+  <link href="/images/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
-    <div class="wrapper">
-        <%-include('components/navbar')%>
-        <div id="body" class="active">
-            <!-- navbar navigation component -->
-            <%-include('components/header')%>
-            <!-- end of navbar navigation -->
-            <div class="content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 page-header">
-                            <div class="page-pretitle">Overview</div>
-                            <h2 class="page-title">Dashboard</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="teal fas fa-shopping-cart"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail">
-                                                <p class="detail-subtitle">New Orders</p>
-                                                <span class="number">6,267</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-calendar"></i> For this Week
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="olive fas fa-money-bill-alt"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail">
-                                                <p class="detail-subtitle">Revenue</p>
-                                                <span class="number">$180,900</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-calendar"></i> For this Month
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="violet fas fa-eye"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail">
-                                                <p class="detail-subtitle">Page views</p>
-                                                <span class="number">28,210</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-stopwatch"></i> For this Month
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="orange fas fa-envelope"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail">
-                                                <p class="detail-subtitle">Support Request</p>
-                                                <span class="number">75</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-envelope-open-text"></i> For this week
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/chartsjs/Chart.min.js"></script>
-    <script src="/javascripts/dashboard-charts.js"></script>
-    <script src="/javascripts/script.js"></script>
+
+  <!-- ======= Header ======= -->
+  <%-include('components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('components/navbar')%>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+  
+
+  </main><!-- End #main -->
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
 </body>
 
 </html>

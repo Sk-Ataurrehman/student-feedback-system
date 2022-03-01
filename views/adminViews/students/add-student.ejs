@@ -1,162 +1,168 @@
-<!doctype html>
-<!-- 
-* Bootstrap Simple Admin Template
-* Version: 2.1
-* Author: Alexis Luna
-* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
--->
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add Student | MHSSP Feedback System</title>
-    <link href="/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/master.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Add Student | Student Feedback System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
-    <div class="wrapper">
+
+  <!-- ======= Header ======= -->
+  <%-include('../components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('../components/navbar')%>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Add Student</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin-feedback/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Students</li>
+          <li class="breadcrumb-item active">Add Student</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
         
-        <!-- sidebar navigation component -->
-        <%-include('../components/navbar')%>
-        <!-- end of sidebar component -->
-        <div id="body" class="active">
-            <!-- navbar navigation component -->
-            <%-include('../components/header')%>
-            <!-- end of navbar navigation -->
-            <div class="content">
-                <div class="container">
-                    <div class="page-title">
-                        <h3>Add Student</h3>
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add New Student</h5>
+
+              <!-- Custom Styled Validation -->
+              <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                <div class="row g-2">
+                    <div class="mb-3 col-md-4">
+                        <label for="rollno" class="form-label">Roll Number</label>
+                        <input type="text" class="form-control" name="rollno" placeholder="Roll Number" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Roll No.</div>
                     </div>
-                    <div class="row">
-                        
 
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">Add New Student</div>
-                                <div class="card-body">
-                                    <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
-                                        <div class="row g-2">
-                                            <div class="mb-3 col-md-4">
-                                                <label for="rollno" class="form-label">Roll Number</label>
-                                                <input type="text" class="form-control" name="rollno" placeholder="Roll Number" required>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter Roll No.</div>
-                                            </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Name.</div>
+                    </div>
 
-                                            <div class="mb-3 col-md-4">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" class="form-control" name="name" placeholder="Name" required>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter Name.</div>
-                                            </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Email.</div>
+                    </div>
 
-                                            <div class="mb-3 col-md-4">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" name="email" placeholder="Email" required>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter Email.</div>
-                                            </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="password" class="form-label">Student Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Student Password" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Student Password.</div>
+                    </div>
 
-                                            <div class="mb-3 col-md-4">
-                                                <label for="password" class="form-label">Student Password</label>
-                                                <input type="password" class="form-control" name="password" placeholder="Student Password" required>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter Student Password.</div>
-                                            </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="parent_email" class="form-label">Parent Email</label>
+                        <input type="email" class="form-control" name="parent_email" placeholder="Parent Email" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Parent Email.</div>
+                    </div>
 
-                                            <div class="mb-3 col-md-4">
-                                                <label for="parent_email" class="form-label">Parent Email</label>
-                                                <input type="email" class="form-control" name="parent_email" placeholder="Parent Email" required>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter Parent Email.</div>
-                                            </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="department" class="form-label">Department</label>
+                        <select name="department" class="form-select" required>
+                            <option value="" selected>Choose Department</option>
+                            <option value="Computer Engineering">Computer Engineering</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please select Item Type.</div>
+                    </div>
 
-                                            <div class="mb-3 col-md-4">
-                                                <label for="department" class="form-label">Department</label>
-                                                <select name="department" class="form-select" required>
-                                                    <option value="" selected>Choose Department</option>
-                                                    <option value="Computer Engineering">Computer Engineering</option>
-                                                    <option value="Information Technology">Information Technology</option>
-                                                    <option value="Electronics">Electronics</option>
-                                                </select>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please select Item Type.</div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row g-2">
-                                            <div class="mb-3 col-md-8">
-                                                <label for="address" class="form-label">Address</label>
-                                                <input type="text" class="form-control" name="address" placeholder="Address" required>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter Address.</div>
-                                            </div>
-                                        </div>
-                                        
-                                        <%if(exist){%>
-                                            <div style="color: rgb(206, 7, 0);padding-bottom: 10px;">
-                                                Student Already exists!
-                                            </div>
-                                        <% } %>
-
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Student</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        
+                </div>
+                <div class="row g-2">
+                    <div class="mb-3 col-md-8">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" placeholder="Address" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Address.</div>
                     </div>
                 </div>
+                
+                <%if(exist){%>
+                    <div style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                        Student Already exists!
+                    </div>
+                <% } %>
+
+                <button type="submit" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i> Add Student</button>
+            </form>
+
             </div>
+          </div>
+
+          
+
         </div>
-    </div>
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/javascripts/form-validator.js"></script>
-    <script src="/javascripts/script.js"></script>
+      </div>
+    </section>
 
-    <script>
-        var cm = document.getElementById('isizecm');
-        var inch = document.getElementById('isizein');
-        
+  </main><!-- End #main -->
 
-        function findin(){
-            var cm1 = cm.value.split(' X ');
-            in1 = parseFloat(cm1[0])*0.3937;
-            in2 = parseFloat(cm1[1])*0.3937;
-            inch.value = in1.toFixed(2)+' X '+in2.toFixed(2);
-            findgrosswt()
-        }
+  
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
 
-        function findgrosswt(){
-            var cms = cm.value.split('X');
-            var cm1 = parseFloat(cms[0]);
-            var cm2 = parseFloat(cms[1]);
-            var gsm = parseInt(document.getElementById('gsm').value);
-            var no_of_sheets = parseInt(document.getElementById('no_of_sheets').value);
-            var pktgrossweight = document.getElementById("pktgrossweight");
-
-            if(typeof cms!=='undefined' && typeof gsm!=='undefined' && typeof no_of_sheets!=='undefined'){
-                var unround = (cm1*cm2*gsm*no_of_sheets)/10000000
-                pktgrossweight.value = unround.toFixed(2);
-            }
-            
-        }
-
-        document.getElementById('grp').onchange= function(){
-            alert('in');
-
-           
-
-        }
-    </script>
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
 
 </body>
 

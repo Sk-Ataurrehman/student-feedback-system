@@ -27,6 +27,11 @@ const adminLogout = require("./routes/adminRoutes/logout");
 const adminDashboard = require("./routes/adminRoutes/dashboard");
 const studentsRoute = require("./routes/adminRoutes/students");
 
+// Students Routes
+const studentLogin = require("./routes/studentRoutes/login");
+const studentDashboard = require("./routes/studentRoutes/dashboard");
+const studentLogout = require("./routes/studentRoutes/logout");
+
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -54,6 +59,11 @@ app.use("/admin-feedback/logout", adminLogout);
 app.use("/admin-feedback/dashboard", adminDashboard);
 app.use("/admin-feedback/students", studentsRoute);
 
+// Student Routes
+app.use("/student-feedback/login", studentLogin);
+app.use("/student-feedback/dashboard", studentDashboard);
+app.use("/student-feedback/logout", studentLogout);
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
@@ -69,8 +79,10 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
+  // render the error page
+  console.log(err);
   res.status(err.status || 500);
-  res.render("error");
+  res.render("error", { message: err.message, error: err });
 });
 
 app.listen(port, () => {

@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/", (req, res, next) => {
+var checkLogin = require("../../middlewares/check-login");
+
+router.get("/", checkLogin, (req, res, next) => {
   if (req.session.loggedIn && req.session.email) {
     res.render("adminViews/dashboard");
   } else {
