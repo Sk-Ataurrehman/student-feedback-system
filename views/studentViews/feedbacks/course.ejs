@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Course Feedback | Student Feedback System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%-include('../components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('../components/navbar')%>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Course Feedback</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/student-feedback/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Feedbacks</li>
+          <li class="breadcrumb-item active">Course Feedback</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+            <br>
+              <!-- Custom Styled Validation -->
+              <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                <div class="row g-2">
+                  
+                    <div class="mb-3 col-md-4">
+                        <label for="acadyear" class="form-label">Academic Year</label>
+                        <input type="text" class="form-control" name="acadyear" placeholder="Academic Year (YYYY-YY)" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Academic Year.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="date" class="form-label">Date</label>
+                      <input type="date" class="form-control" name="date">
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="department" class="form-label">Department</label>
+                      <select name="department" class="form-select" required>
+                          <option value="" selected>Choose Department</option>
+                          <option value="Computer Engineering">Computer Engineering</option>
+                          <option value="Information Technology">Information Technology</option>
+                          <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                          <option value="Mechanical Engineering">Mechanical Engineering</option>
+                          <option value="Electrical Engineering">Electrical Engineering</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Department.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="semester" class="form-label">Semester</label>
+                      <select name="semester" class="form-select" required>
+                          <option value="" selected>Choose Semester</option>
+                          <option value="Semester 1">Semester 1</option>
+                          <option value="Semester 2">Semester 2</option>
+                          <option value="Semester 3">Semester 3</option>
+                          <option value="Semester 4">Semester 4</option>
+                          <option value="Semester 5">Semester 5</option>
+                          <option value="Semester 6">Semester 6</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Semester.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                        <label for="subject" class="form-label">Subject Name</label>
+                        <input type="text" class="form-control" name="subject" placeholder="Subject Name" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Subject Name.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                        <label for="staff" class="form-label">Staff Name</label>
+                        <input type="text" class="form-control" name="staff" placeholder="Staff Name" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Staff Name.</div>
+                    </div>
+                </div>
+                <div class="row g-2">
+                  <div class="text-center" style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                    5 - Strongly Agree || 4 - Agree || 3 - Neutral || 2 - Disagree || 1 - Strongly Disagree
+                  </div>
+                </div>
+                <div class="row g-2">
+                    
+                  <table width="100%" class="table">
+                    <br>
+                    <thead>
+                      <tr>
+                        <th>Sr. No</th>
+                        <th>Particulars</th>
+                        <th>5</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>1</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr>
+                            <td>1</td>
+                            <td>Punctuality</td>
+                            <td><input type="radio" name="punctuality" value="1"></td>
+                            <td><input type="radio" name="punctuality" value="2"></td>
+                            <td><input type="radio" name="punctuality" value="3"></td>
+                            <td><input type="radio" name="punctuality" value="4"></td>
+                            <td><input type="radio" name="punctuality" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>2</td>
+                          <td>Accessibility / Availability</td>
+                          <td><input type="radio" name="accessibility" value="1"></td>
+                          <td><input type="radio" name="accessibility" value="2"></td>
+                          <td><input type="radio" name="accessibility" value="3"></td>
+                          <td><input type="radio" name="accessibility" value="4"></td>
+                          <td><input type="radio" name="accessibility" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>3</td>
+                          <td>Sincerity</td>
+                          <td><input type="radio" name="sincerity" value="1"></td>
+                          <td><input type="radio" name="sincerity" value="2"></td>
+                          <td><input type="radio" name="sincerity" value="3"></td>
+                          <td><input type="radio" name="sincerity" value="4"></td>
+                          <td><input type="radio" name="sincerity" value="5"></td>
+                        </tr>
+                        
+                        <tr>
+                          <td>4</td>
+                          <td>Behaviour</td>
+                          <td><input type="radio" name="behaviour" value="1"></td>
+                          <td><input type="radio" name="behaviour" value="2"></td>
+                          <td><input type="radio" name="behaviour" value="3"></td>
+                          <td><input type="radio" name="behaviour" value="4"></td>
+                          <td><input type="radio" name="behaviour" value="5"></td>                         
+                        </tr>
+                      
+                        <tr>
+                          <td>5</td>
+                          <td>Subject Knowledge</td>
+                          <td><input type="radio" name="knowledge" value="1"></td>
+                          <td><input type="radio" name="knowledge" value="2"></td>
+                          <td><input type="radio" name="knowledge" value="3"></td>
+                          <td><input type="radio" name="knowledge" value="4"></td>
+                          <td><input type="radio" name="knowledge" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>6</td>
+                          <td>Full Hour Engagement of Lecture & Practical</td>
+                          <td><input type="radio" name="engagement" value="1"></td>
+                          <td><input type="radio" name="engagement" value="2"></td>
+                          <td><input type="radio" name="engagement" value="3"></td>
+                          <td><input type="radio" name="engagement" value="4"></td>
+                          <td><input type="radio" name="engagement" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>7</td>
+                          <td>Presentation Skills</td>
+                          <td><input type="radio" name="skills" value="1"></td>
+                          <td><input type="radio" name="skills" value="2"></td>
+                          <td><input type="radio" name="skills" value="3"></td>
+                          <td><input type="radio" name="skills" value="4"></td>
+                          <td><input type="radio" name="skills" value="5"></td>                         
+                        </tr>
+
+                        <tr>
+                          <td>8</td>
+                          <td>Interaction with students</td>
+                          <td><input type="radio" name="interaction" value="1"></td>
+                          <td><input type="radio" name="interaction" value="2"></td>
+                          <td><input type="radio" name="interaction" value="3"></td>
+                          <td><input type="radio" name="interaction" value="4"></td>
+                          <td><input type="radio" name="interaction" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>9</td>
+                          <td>Use of Teaching aids</td>
+                          <td><input type="radio" name="aids" value="1"></td>
+                          <td><input type="radio" name="aids" value="2"></td>
+                          <td><input type="radio" name="aids" value="3"></td>
+                          <td><input type="radio" name="aids" value="4"></td>
+                          <td><input type="radio" name="aids" value="5"></td>                                                
+                        </tr>
+
+                        <tr>
+                          <td>10</td>
+                          <td>Completion of Syllabus</td>
+                          <td><input type="radio" name="completion" value="1"></td>
+                          <td><input type="radio" name="completion" value="2"></td>
+                          <td><input type="radio" name="completion" value="3"></td>
+                          <td><input type="radio" name="completion" value="4"></td>
+                          <td><input type="radio" name="completion" value="5"></td>                      
+                        </tr>
+
+                        <tr>
+                          <td>11</td>
+                          <td>Practices & Revision</td>
+                          <td><input type="radio" name="practices" value="1"></td>
+                          <td><input type="radio" name="practices" value="2"></td>
+                          <td><input type="radio" name="practices" value="3"></td>
+                          <td><input type="radio" name="practices" value="4"></td>
+                          <td><input type="radio" name="practices" value="5"></td>                       
+                        </tr>
+
+                        <tr>
+                          <td>12</td>
+                          <td>Test & Evolution</td>
+                          <td><input type="radio" name="test" value="1"></td>
+                          <td><input type="radio" name="test" value="2"></td>
+                          <td><input type="radio" name="test" value="3"></td>
+                          <td><input type="radio" name="test" value="4"></td>
+                          <td><input type="radio" name="test" value="5"></td>                        
+                        </tr>
+
+                        <tr>
+                          <td>13</td>
+                          <td>Ability to maintain discipline</td>
+                          <td><input type="radio" name="discipline" value="1"></td>
+                          <td><input type="radio" name="discipline" value="2"></td>
+                          <td><input type="radio" name="discipline" value="3"></td>
+                          <td><input type="radio" name="discipline" value="4"></td>
+                          <td><input type="radio" name="discipline" value="5"></td>                          
+                        </tr>
+
+                        <tr>
+                          <td>14</td>
+                          <td>Overall perfomance</td>
+                          <td><input type="radio" name="skills" value="1"></td>
+                          <td><input type="radio" name="skills" value="2"></td>
+                          <td><input type="radio" name="skills" value="3"></td>
+                          <td><input type="radio" name="skills" value="4"></td>
+                          <td><input type="radio" name="skills" value="5"></td>                         
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="suggestion" class="form-label">Any suggestions for improvements</label>
+                    <textarea class="form-control" name="suggestion" placeholder="Suggestions" required></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please enter your suggestions.</div>
+                  </div>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+
+            </div>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
+</body>
+
+</html>

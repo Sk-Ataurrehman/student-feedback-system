@@ -26,11 +26,13 @@ const adminLogin = require("./routes/adminRoutes/login");
 const adminLogout = require("./routes/adminRoutes/logout");
 const adminDashboard = require("./routes/adminRoutes/dashboard");
 const studentsRoute = require("./routes/adminRoutes/students");
+const feedbacksRoute = require("./routes/adminRoutes/feedbacks/feedbacks");
 
 // Students Routes
 const studentLogin = require("./routes/studentRoutes/login");
 const studentDashboard = require("./routes/studentRoutes/dashboard");
 const studentLogout = require("./routes/studentRoutes/logout");
+const StudentfeedbackRoutes = require("./routes/studentRoutes/feedback");
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -58,11 +60,13 @@ app.use("/admin-feedback/login", adminLogin);
 app.use("/admin-feedback/logout", adminLogout);
 app.use("/admin-feedback/dashboard", adminDashboard);
 app.use("/admin-feedback/students", studentsRoute);
+app.use("/admin-feedback/feedbacks", feedbacksRoute);
 
 // Student Routes
 app.use("/student-feedback/login", studentLogin);
 app.use("/student-feedback/dashboard", studentDashboard);
 app.use("/student-feedback/logout", studentLogout);
+app.use("/student-feedback/feedbacks", StudentfeedbackRoutes);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

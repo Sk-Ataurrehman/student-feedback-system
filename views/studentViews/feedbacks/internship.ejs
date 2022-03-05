@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Internship Feedback | Student Feedback System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%-include('../components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('../components/navbar')%>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Internship Feedback</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/student-feedback/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Feedbacks</li>
+          <li class="breadcrumb-item active">Internship Feedback</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+            <br>
+              <!-- Custom Styled Validation -->
+              <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                <div class="row g-2">
+                  
+                    <div class="mb-3 col-md-4">
+                        <label for="acadyear" class="form-label">Academic Year</label>
+                        <input type="text" class="form-control" name="acadyear" placeholder="Academic Year (YYYY-YY)" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Academic Year.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="place" class="form-label">Place of visit</label>
+                      <input type="text" class="form-control" name="place" placeholder="Place of Visit" required>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please enter Place Of Visit.</div>
+                  </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="date" class="form-label">Date of Visit</label>
+                      <input type="date" class="form-control" name="date">
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="department" class="form-label">Department</label>
+                      <select name="department" class="form-select" required>
+                          <option value="" selected>Choose Department</option>
+                          <option value="Computer Engineering">Computer Engineering</option>
+                          <option value="Information Technology">Information Technology</option>
+                          <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                          <option value="Mechanical Engineering">Mechanical Engineering</option>
+                          <option value="Electrical Engineering">Electrical Engineering</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Department.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="semester" class="form-label">Semester</label>
+                      <select name="semester" class="form-select" required>
+                          <option value="" selected>Choose Semester</option>
+                          <option value="Semester 1">Semester 1</option>
+                          <option value="Semester 2">Semester 2</option>
+                          <option value="Semester 3">Semester 3</option>
+                          <option value="Semester 4">Semester 4</option>
+                          <option value="Semester 5">Semester 5</option>
+                          <option value="Semester 6">Semester 6</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Semester.</div>
+                    </div>
+
+                   
+
+                </div>
+
+                <div class="row g-2">
+                  <div class="text-center" style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                    5 - Strongly Agree || 4 - Agree || 3 - Neutral || 2 - Disagree || 1 - Strongly Disagree
+                  </div>
+                </div>  
+                <div class="row g-2">
+                    
+                  <table width="100%" class="table">
+                    <br>
+                    <thead>
+                      <tr>
+                        <th>Sr. No</th>
+                        <th>Particulars</th>
+                        <th>5</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>1</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr>
+                            <td>1</td>
+                            <td>The outcomes of the Internships were clearly defined</td>
+                            <td><input type="radio" name="outcomes" value="1"></td>
+                            <td><input type="radio" name="outcomes" value="2"></td>
+                            <td><input type="radio" name="outcomes" value="3"></td>
+                            <td><input type="radio" name="outcomes" value="4"></td>
+                            <td><input type="radio" name="outcomes" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>2</td>
+                          <td>The content covered were relevant to the expected Internship outcomes</td>
+                          <td><input type="radio" name="content" value="1"></td>
+                          <td><input type="radio" name="content" value="2"></td>
+                          <td><input type="radio" name="content" value="3"></td>
+                          <td><input type="radio" name="content" value="4"></td>
+                          <td><input type="radio" name="content" value="5"></td>
+                          
+                        </tr>
+
+                        <tr>
+                          <td>3</td>
+                          <td>The session and the trainers has enhanced the understanding of the subject knowledge</td>
+                          <td><input type="radio" name="session" value="1"></td>
+                          <td><input type="radio" name="session" value="2"></td>
+                          <td><input type="radio" name="session" value="3"></td>
+                          <td><input type="radio" name="session" value="4"></td>
+                          <td><input type="radio" name="session" value="5"></td>
+                        </tr>
+                        
+                        <tr>
+                          <td>4</td>
+                          <td>The duration and the scheduling of the session was satisfactory</td>
+                          <td><input type="radio" name="duration" value="1"></td>
+                          <td><input type="radio" name="duration" value="2"></td>
+                          <td><input type="radio" name="duration" value="3"></td>
+                          <td><input type="radio" name="duration" value="4"></td>
+                          <td><input type="radio" name="duration" value="5"></td>
+                        </tr>
+                      
+                        <tr>
+                          <td>5</td>
+                          <td>The Internship was very informative and excellent</td>
+                          <td><input type="radio" name="informative" value="1"></td>
+                          <td><input type="radio" name="informative" value="2"></td>
+                          <td><input type="radio" name="informative" value="3"></td>
+                          <td><input type="radio" name="informative" value="4"></td>
+                          <td><input type="radio" name="informative" value="5"></td>
+                        </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="suggestion" class="form-label">What new knowledge or skill did you learn on the Internship?</label>
+                    <textarea class="form-control" name="suggestion" placeholder="Skills or Knowledge you learned" required></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please enter your suggestions.</div>
+                  </div>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+
+            </div>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
+</body>
+
+</html>
