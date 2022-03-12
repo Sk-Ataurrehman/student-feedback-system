@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Alumni Feedback | Student Feedback System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%-include('../components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('../components/navbar')%>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Alumni Feedback</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/student-feedback/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Feedbacks</li>
+          <li class="breadcrumb-item active">Alumni Feedback</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+            <br>
+              <!-- Custom Styled Validation -->
+              <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                <div class="row g-2">
+                  
+                    <div class="mb-3 col-md-4">
+                        <label for="acadyear" class="form-label">Year of Passing</label>
+                        <input type="text" class="form-control" name="yearpass" placeholder="Year of Passing" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Passing Year.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="date" class="form-label">Date</label>
+                      <input type="date" class="form-control" name="date">
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="department" class="form-label">Department</label>
+                      <select name="department" class="form-select" required>
+                          <option value="" selected>Choose Department</option>
+                          <option value="Computer Engineering">Computer Engineering</option>
+                          <option value="Information Technology">Information Technology</option>
+                          <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                          <option value="Mechanical Engineering">Mechanical Engineering</option>
+                          <option value="Electrical Engineering">Electrical Engineering</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Department.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="employer" class="form-label">Name of Employer</label>
+                      <input type="text" class="form-control" name="employer" placeholder="Name of Employer" required>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please enter Name of Employer.</div>
+                    </div>
+                   
+                    <div class="mb-3 col-md-4">
+                      <label for="position" class="form-label">Current Position in an Organization</label>
+                      <input type="text" class="form-control" name="position" placeholder="Position" required>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please enter your current position.</div>
+                    </div>
+                </div>
+
+                <div class="row g-2">
+                  <div class="text-center" style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                    5 - Strongly Agree || 4 - Agree || 3 - Neutral || 2 - Disagree || 1 - Strongly Disagree
+                  </div>
+                </div>  
+
+                <div class="row g-2">
+                    
+                  <table width="100%" class="table">
+                    <br>
+                    <thead>
+                      <tr>
+                        <th>Sr. No</th>
+                        <th>Particulars</th>
+                        <th>5</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>1</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr>
+                            <td>1</td>
+                            <td>Do you feel proud to be associated with Saboo Siddik as an Alumni?</td>
+                            <td><input type="radio" name="proud" value="1"></td>
+                            <td><input type="radio" name="proud" value="2"></td>
+                            <td><input type="radio" name="proud" value="3"></td>
+                            <td><input type="radio" name="proud" value="4"></td>
+                            <td><input type="radio" name="proud" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>2</td>
+                          <td>Institute organizes various kinds of activities for overall development of students & staff members.</td>
+                          <td><input type="radio" name="activities" value="1"></td>
+                          <td><input type="radio" name="activities" value="2"></td>
+                          <td><input type="radio" name="activities" value="3"></td>
+                          <td><input type="radio" name="activities" value="4"></td>
+                          <td><input type="radio" name="activities" value="5"></td>
+                          
+                        </tr>
+
+                        <tr>
+                          <td>3</td>
+                          <td>are you willing to contribute in the development of the institute?</td>
+                          <td><input type="radio" name="contribute" value="1"></td>
+                          <td><input type="radio" name="contribute" value="2"></td>
+                          <td><input type="radio" name="contribute" value="3"></td>
+                          <td><input type="radio" name="contribute" value="4"></td>
+                          <td><input type="radio" name="contribute" value="5"></td>
+                        </tr>
+                        
+                        <tr>
+                          <td>4</td>
+                          <td>Institute handles student gravience properly.</td>
+                          <td><input type="radio" name="gravience" value="1"></td>
+                          <td><input type="radio" name="gravience" value="2"></td>
+                          <td><input type="radio" name="gravience" value="3"></td>
+                          <td><input type="radio" name="gravience" value="4"></td>
+                          <td><input type="radio" name="gravience" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>5</td>
+                          <td>Institute is having adequate laboratories and equipments for practical experiences.</td>
+                          <td><input type="radio" name="equipments" value="1"></td>
+                          <td><input type="radio" name="equipments" value="2"></td>
+                          <td><input type="radio" name="equipments" value="3"></td>
+                          <td><input type="radio" name="equipments" value="4"></td>
+                          <td><input type="radio" name="equipments" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>6</td>
+                          <td>Is education imparted as Saboo Siddik is useful and relevant at your present job.</td>
+                          <td><input type="radio" name="relevant" value="1"></td>
+                          <td><input type="radio" name="relevant" value="2"></td>
+                          <td><input type="radio" name="relevant" value="3"></td>
+                          <td><input type="radio" name="relevant" value="4"></td>
+                          <td><input type="radio" name="relevant" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>7</td>
+                          <td>Did you obtain sufficient technical knowledge at Saboo Siddik?</td>
+                          <td><input type="radio" name="technical" value="1"></td>
+                          <td><input type="radio" name="technical" value="2"></td>
+                          <td><input type="radio" name="technical" value="3"></td>
+                          <td><input type="radio" name="technical" value="4"></td>
+                          <td><input type="radio" name="technical" value="5"></td>
+                        </tr>
+
+
+                        <tr>
+                          <td>8</td>
+                          <td>Has the T & P Cell provided ample On-Campus and Off-Campus placement opportunities?</td>
+                          <td><input type="radio" name="placement" value="1"></td>
+                          <td><input type="radio" name="placement" value="2"></td>
+                          <td><input type="radio" name="placement" value="3"></td>
+                          <td><input type="radio" name="placement" value="4"></td>
+                          <td><input type="radio" name="placement" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>9</td>
+                          <td>Do you like to join the Institute Alumni Association?</td>
+                          <td><input type="radio" name="association" value="1"></td>
+                          <td><input type="radio" name="association" value="2"></td>
+                          <td><input type="radio" name="association" value="3"></td>
+                          <td><input type="radio" name="association" value="4"></td>
+                          <td><input type="radio" name="association" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>10</td>
+                          <td>Do you receive regular updates from the Institute through Mails/Calls/SMS etc.?</td>
+                          <td><input type="radio" name="updates" value="1"></td>
+                          <td><input type="radio" name="updates" value="2"></td>
+                          <td><input type="radio" name="updates" value="3"></td>
+                          <td><input type="radio" name="updates" value="4"></td>
+                          <td><input type="radio" name="updates" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>11</td>
+                          <td>How will you rate the alumni meet program?</td>
+                          <td><input type="radio" name="rate" value="1"></td>
+                          <td><input type="radio" name="rate" value="2"></td>
+                          <td><input type="radio" name="rate" value="3"></td>
+                          <td><input type="radio" name="rate" value="4"></td>
+                          <td><input type="radio" name="rate" value="5"></td>
+                        </tr>
+
+                        <tr>
+                          <td>11</td>
+                          <td>How will you rate our hospitality?</td>
+                          <td><input type="radio" name="hospitality" value="1"></td>
+                          <td><input type="radio" name="hospitality" value="2"></td>
+                          <td><input type="radio" name="hospitality" value="3"></td>
+                          <td><input type="radio" name="hospitality" value="4"></td>
+                          <td><input type="radio" name="hospitality" value="5"></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="nexttopic" class="form-label">How frequently would you like to attend the alumni meet?
+                    </label>
+                    <div class="row g-2">
+                      <div class="col-md-2">
+                        <input type="radio" class="freq" name="frequently" value="1" required> Once in a year
+                      </div>
+                      <div class="col-md-2">
+                        <input type="radio" class="freq" name="frequently" value="2" required> Twice in a year
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+
+            </div>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Exit Feedback | Student Feedback System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%-include('../components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('../components/navbar')%>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Exit Feedback</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/student-feedback/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Feedbacks</li>
+          <li class="breadcrumb-item active">Exit Feedback</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+            <br>
+              <!-- Custom Styled Validation -->
+              <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                <div class="row g-2">
+                  
+                    <div class="mb-3 col-md-4">
+                        <label for="acadyear" class="form-label">Year of Passing</label>
+                        <input type="text" class="form-control" name="yearpass" placeholder="Year of Passing" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Passing Year.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="date" class="form-label">Date</label>
+                      <input type="date" class="form-control" name="date">
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="department" class="form-label">Department</label>
+                      <select name="department" class="form-select" required>
+                          <option value="" selected>Choose Department</option>
+                          <option value="Computer Engineering">Computer Engineering</option>
+                          <option value="Information Technology">Information Technology</option>
+                          <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                          <option value="Mechanical Engineering">Mechanical Engineering</option>
+                          <option value="Electrical Engineering">Electrical Engineering</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Department.</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label for="department" class="form-label">Current Status</label>
+                      <select name="department" class="form-select" required>
+                          <option value="" selected>Choose current status</option>
+                          <option value="Currently placed">Curretly placed</option>
+                          <option value="Higher studies">Going for higher studies</option>
+                          <option value="Other">others (Entrepreneurship, business etc.)</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Department.</div>
+                    </div>
+
+                </div>
+                
+                <div class="row g-2">
+                  <div class="text-center" style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                    4 - Very Much || 3 - Moderately || 3 - Somewhat || 1 - Not at all
+                  </div>
+                </div> 
+
+                <div class="row g-2">
+                  <div class="text-bold">
+                    <b>i. Academic Feedback</b>
+                  </div>
+                </div> 
+
+                 
+
+                <div class="row g-2">
+                    
+                  <table width="100%" class="table">
+                    <br>
+                    <thead>
+                      <tr>
+                        <th>Sr. No</th>
+                        <th>Particulars</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>1</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr>
+                            <td>1</td>
+                            <td>Did you feel your diploma education prepared you for the initial job and/or higher studise?</td>
+                            <td><input type="radio" name="prepared" value="1"></td>
+                            <td><input type="radio" name="prepared" value="2"></td>
+                            <td><input type="radio" name="prepared" value="3"></td>
+                            <td><input type="radio" name="prepared" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>2</td>
+                          <td>Knowledge gained has boosted my confidence level to face challenges.</td>
+                          <td><input type="radio" name="confidence" value="1"></td>
+                          <td><input type="radio" name="confidence" value="2"></td>
+                          <td><input type="radio" name="confidence" value="3"></td>
+                          <td><input type="radio" name="confidence" value="4"></td>
+                          
+                        </tr>
+
+                        <tr>
+                          <td>3</td>
+                          <td>I'm able to develop competencies through self-education for lifelong learning.</td>
+                          <td><input type="radio" name="competencies" value="1"></td>
+                          <td><input type="radio" name="competencies" value="2"></td>
+                          <td><input type="radio" name="competencies" value="3"></td>
+                          <td><input type="radio" name="competencies" value="4"></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="otherskills" class="form-label">4. Are there any other skills or knowledge you would like to have in our diploma programme so that students are better prepared for employment and/or higher studies? if YES, please specify.</label>
+                    <textarea class="form-control" name="otherskills" placeholder="Please Specify"></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please specify.</div>
+                  </div>
+                </div>
+                
+                <br>
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label class="form-label">5. In past one-three years, how many sports and cultural activities have you participated?</label>
+                    <div class="row g-2">
+                      <div class="col-md-2">
+                        <input type="radio" name="activities" value="0" required> none
+                      </div>
+                      <div class="col-md-2">
+                        <input type="radio" name="activities" value="1-3" required> 1 - 3
+                      </div>
+                      <div class="col-md-2">
+                        <input type="radio" name="activities" value="4-6" required> 4 - 6
+                      </div>
+                      <div class="col-md-2">
+                        <input type="radio" name="activities" value="6" required> More than 6
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <br>
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="achievements" class="form-label">6. Specify details regarding your achievements in curricular/ non-curricular activities. </label>
+                    <textarea class="form-control" name="achievements" placeholder="Please Specify Achievments"></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please specify.</div>
+                  </div>
+                </div>
+                
+                <br>
+
+                <div class="row g-2">
+                  <div class="text-bold">
+                    <b>ii. Please Answer the following.</b>
+                  </div>
+                </div> 
+                
+                <br>
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="values" class="form-label">1. Mention one value that you picked in Saboo Siddik Polytechnic. </label>
+                    <input type="text" class="form-control" name="values" placeholder="Please Specify the value"></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please specify the value.</div>
+                  </div>
+                </div>
+
+                <br>
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="values" class="form-label">2. What you liked most in Saboo Siddik? </label>
+                    <input type="text" class="form-control" name="values" placeholder="Please Specify what you liked"></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please specify what you liked.</div>
+                  </div>
+                </div>
+
+                <br>
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="values" class="form-label">3. Was there any role model for you in Saboo Siddik during your student-ship? </label>
+                    <input type="text" class="form-control" name="values" placeholder="Please Specify the role model"></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please specify the value.</div>
+                  </div>
+                </div>
+
+                <br>
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="values" class="form-label">4. Most inspiring faculties you would like to name. </label>
+                    <input type="text" class="form-control" name="values" placeholder="Please Specify the value"></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please specify the value.</div>
+                  </div>
+                </div>
+
+                <br>
+                <div class="row g-2">
+                  <div class="text-bold">
+                    <b>iii. Administration and faculties.</b>
+                  </div>
+                </div> 
+
+                <div class="row g-2">
+                    
+                  <table width="100%" class="table">
+                    <br>
+                    <thead>
+                      <tr>
+                        <th>Sr. No</th>
+                        <th>Particulars</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>1</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr>
+                            <td>1</td>
+                            <td>Head of the department</td>
+                            <td><input type="radio" name="hod" value="1"></td>
+                            <td><input type="radio" name="hod" value="2"></td>
+                            <td><input type="radio" name="hod" value="3"></td>
+                            <td><input type="radio" name="hod" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>2</td>
+                          <td>Teaching Faculty</td>
+                          <td><input type="radio" name="faculty" value="1"></td>
+                          <td><input type="radio" name="faculty" value="2"></td>
+                          <td><input type="radio" name="faculty" value="3"></td>
+                          <td><input type="radio" name="faculty" value="4"></td>
+                          
+                        </tr>
+
+                        <tr>
+                          <td>3</td>
+                          <td>Non-teaching staff</td>
+                          <td><input type="radio" name="nonteaching" value="1"></td>
+                          <td><input type="radio" name="nonteaching" value="2"></td>
+                          <td><input type="radio" name="nonteaching" value="3"></td>
+                          <td><input type="radio" name="nonteaching" value="4"></td>
+                        </tr>
+                        
+                        <tr>
+                          <td>4</td>
+                          <td>Library</td>
+                          <td><input type="radio" name="library" value="1"></td>
+                          <td><input type="radio" name="library" value="2"></td>
+                          <td><input type="radio" name="library" value="3"></td>
+                          <td><input type="radio" name="library" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>5</td>
+                          <td>Laboratories</td>
+                          <td><input type="radio" name="laboratories" value="1"></td>
+                          <td><input type="radio" name="laboratories" value="2"></td>
+                          <td><input type="radio" name="laboratories" value="3"></td>
+                          <td><input type="radio" name="laboratories" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>6</td>
+                          <td>Administration</td>
+                          <td><input type="radio" name="administration" value="1"></td>
+                          <td><input type="radio" name="administration" value="2"></td>
+                          <td><input type="radio" name="administration" value="3"></td>
+                          <td><input type="radio" name="administration" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>7</td>
+                          <td>Training and Placement Officer</td>
+                          <td><input type="radio" name="technical" value="1"></td>
+                          <td><input type="radio" name="technical" value="2"></td>
+                          <td><input type="radio" name="technical" value="3"></td>
+                          <td><input type="radio" name="technical" value="4"></td>
+                        </tr>
+
+
+                        <tr>
+                          <td>8</td>
+                          <td>Campus Placement opportunities</td>
+                          <td><input type="radio" name="placement" value="1"></td>
+                          <td><input type="radio" name="placement" value="2"></td>
+                          <td><input type="radio" name="placement" value="3"></td>
+                          <td><input type="radio" name="placement" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>9</td>
+                          <td>Discipline</td>
+                          <td><input type="radio" name="discipline" value="1"></td>
+                          <td><input type="radio" name="discipline" value="2"></td>
+                          <td><input type="radio" name="discipline" value="3"></td>
+                          <td><input type="radio" name="discipline" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>10</td>
+                          <td>Overall environment</td>
+                          <td><input type="radio" name="environment" value="1"></td>
+                          <td><input type="radio" name="environment" value="2"></td>
+                          <td><input type="radio" name="environment" value="3"></td>
+                          <td><input type="radio" name="environment" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>11</td>
+                          <td>Canteen</td>
+                          <td><input type="radio" name="canteen" value="1"></td>
+                          <td><input type="radio" name="canteen" value="2"></td>
+                          <td><input type="radio" name="canteen" value="3"></td>
+                          <td><input type="radio" name="canteen" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>12</td>
+                          <td>Drinking water</td>
+                          <td><input type="radio" name="water" value="1"></td>
+                          <td><input type="radio" name="water" value="2"></td>
+                          <td><input type="radio" name="water" value="3"></td>
+                          <td><input type="radio" name="water" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>13</td>
+                          <td>Internet Facility</td>
+                          <td><input type="radio" name="internet" value="1"></td>
+                          <td><input type="radio" name="internet" value="2"></td>
+                          <td><input type="radio" name="internet" value="3"></td>
+                          <td><input type="radio" name="internet" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>14</td>
+                          <td>Cleanliness</td>
+                          <td><input type="radio" name="cleanliness" value="1"></td>
+                          <td><input type="radio" name="cleanliness" value="2"></td>
+                          <td><input type="radio" name="cleanliness" value="3"></td>
+                          <td><input type="radio" name="cleanliness" value="4"></td>
+                        </tr>
+
+                        <tr>
+                          <td>15</td>
+                          <td>Resolution of greviences</td>
+                          <td><input type="radio" name="resolution" value="1"></td>
+                          <td><input type="radio" name="resolution" value="2"></td>
+                          <td><input type="radio" name="resolution" value="3"></td>
+                          <td><input type="radio" name="resolution" value="4"></td>
+                        </tr>
+
+
+                    </tbody>
+                  </table>
+                </div>
+
+                <br>
+                <div class="row g-2">
+                  <div class="text-bold">
+                    <b>iv. Your suggestion(s) for improvement</b>
+                  </div>
+                </div> 
+
+                <br>
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="suggestions" class="form-label">Name the suggestions we need to improve: </label>
+                    <textarea class="form-control" name="suggestions" placeholder="Please Specify the suggestion(s)"></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please specify the suggestions.</div>
+                  </div>
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+            
+
+            </div>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
+</body>
+
+</html>
