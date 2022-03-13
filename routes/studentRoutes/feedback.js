@@ -54,8 +54,16 @@ router.post("/course", checkLogin, (req, res, next) => {
     overall: req.body.overall,
     suggestions: req.body.suggestion,
   });
-  console.log(course);
-  res.redirect("/student-feedback/dashboard");
+
+  course
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
 });
 
 module.exports = router;

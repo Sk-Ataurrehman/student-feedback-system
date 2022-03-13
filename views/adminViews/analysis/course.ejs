@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Students Feedbacks (Staff) - FeedbackHUT</title>
+  <%-include('../components/head')%>
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%-include('../components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('../components/navbar')%>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Students Feedback (Staff) (Analysis)</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin-feedback/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Feebacks</li>
+          <li class="breadcrumb-item active">Students Feedbacks</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+
+        <form action="/admin-feedback/analysis/course" method="post" class="row g-3 needs-validation" novalidate>
+          <div class="mb-3 col-md-3">
+            <label for="acadyear" class="form-label">Academic Year</label>
+            <input type="text" class="form-control" name="acadyear" placeholder="Academic Year (YYYY-YY)" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please enter Academic Year.</div>
+          </div>
+          
+          <div class="mb-3 col-md-3">
+            <label for="department" class="form-label">Department</label>
+            <select name="department" class="form-select" required>
+                <option value="" selected>Choose Department</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+            </select>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please select Department.</div>
+          </div>
+
+          <div class="mb-3 col-md-3">
+            <label for="staff" class="form-label">Staff Name</label>
+            <input type="text" class="form-control" name="staff" placeholder="Staff Name" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please enter Staff Name.</div>
+          </div>
+
+          
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-primary" style="margin:11%">Submit</button>
+          </div>  
+        </form>
+      </div>
+    </section>
+    
+    <%if(noents==true){%>
+      <div class="text-center">
+        <h5> No Data found!</h5>
+      </div>
+    <%}%>  
+
+    <%if(!(avgs && Object.keys(avgs).length === 0 && Object.getPrototypeOf(avgs) === Object.prototype) && noents==false) {%>
+    
+      <div class="row g-2">   
+        <div class="card">
+        <table width="100%" class="table">
+          <br>
+          <thead>
+            <tr>
+              <th>Sr. No</th>
+              <th>Particulars</th>
+              <th>Average Marks</th>
+          </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                  <td>1</td>
+                  <td>Punctuality</td>
+                  <td><%=avgs.punc%></td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>Accessibility / Availability</td>
+                <td><%=avgs.accessibility%></td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>Sincerity</td>
+                <td><%=avgs.sincerity%></td>
+              </tr>
+              
+              <tr>
+                <td>4</td>
+                <td>Behaviour</td>
+                <td><%=avgs.behaviour%></td>                         
+              </tr>
+            
+              <tr>
+                <td>5</td>
+                <td>Subject Knowledge</td>
+                <td><%=avgs.knowledge%></td>
+              </tr>
+
+              <tr>
+                <td>6</td>
+                <td>Full Hour Engagement of Lecture & Practical</td>
+                <td><%=avgs.engagement%></td>
+              </tr>
+
+              <tr>
+                <td>7</td>
+                <td>Presentation Skills</td>
+                <td><%=avgs.presentation%></td>                         
+              </tr>
+
+              <tr>
+                <td>8</td>
+                <td>Interaction with students</td>
+                <td><%=avgs.interaction%></td>
+              </tr>
+
+              <tr>
+                <td>9</td>
+                <td>Use of Teaching aids</td>
+                <td><%=avgs.aids%></td>                                                
+              </tr>
+
+              <tr>
+                <td>10</td>
+                <td>Completion of Syllabus</td>
+                <td><%=avgs.completion%></td>                      
+              </tr>
+
+              <tr>
+                <td>11</td>
+                <td>Practices & Revision</td>
+                <td><%=avgs.practices%></td>                       
+              </tr>
+
+              <tr>
+                <td>12</td>
+                <td>Test & Evolution</td>
+                <td><%=avgs.evolution%></td>                        
+              </tr>
+
+              <tr>
+                <td>13</td>
+                <td>Ability to maintain discipline</td>
+                <td><%=avgs.ability%></td>                          
+              </tr>
+
+              <tr>
+                <td>14</td>
+                <td>Overall perfomance</td>
+                <td><%=avgs.overall%></td>                         
+              </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    <section class="section">
+      <div class="row">
+      
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Course Feedbacks </h5>
+
+              <!-- Bar Chart -->
+              <canvas id="barChart" style="max-height: 400px;"></canvas>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new Chart(document.querySelector('#barChart'), {
+                    type: 'bar',
+                    data: {
+                      labels: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14'],
+                      datasets: [{
+                        label:'Average Marks',
+                        data: ['<%=avgs.punc%>', '<%=avgs.accessibility%>', '<%=avgs.sincerity%>', '<%=avgs.behaviour%>', '<%=avgs.knowledge%>', '<%=avgs.engagement%>', '<%=avgs.presentation%>','<%=avgs.interaction%>', '<%=avgs.aids%>', '<%=avgs.completion%>', '<%=avgs.practices%>', '<%=avgs.evolution%>', '<%=avgs.ability%>', '<%=avgs.overall%>'],
+                        backgroundColor: [
+                          'rgba(0, 51, 102, 0.5)',
+                          'rgba(51, 102, 153, 0.5)',
+                          'rgba(0, 102, 102, 0.5)',
+                          'rgba(102, 153, 153, 0.5)',
+                          'rgba(51, 153, 102, 0.5)',
+                          'rgba(51, 153, 51, 0.5)',
+                          'rgba(0, 102, 0, 0.5)',
+                          'rgba(0, 51, 0, 0.5)',
+                          'rgba(0, 0, 102, 0.5)',
+                          'rgba(102, 0, 102, 0.5)',
+                          'rgba(102, 0, 51, 0.5)',
+                          'rgba(153, 0, 51, 0.5)',
+                          'rgba(153, 51, 0, 0.5)',
+                          'rgba(204, 102, 0, 0.5)'
+                        ],
+                        borderColor: [
+                          'rgb(0, 51, 102)',
+                          'rgb(51, 102, 153)',
+                          'rgb(0, 102, 102)',
+                          'rgb(102, 153, 153)',
+                          'rgb(51, 153, 102)',
+                          'rgb(51, 153, 51)',
+                          'rgb(0, 102, 0)',
+                          'rgb(0, 51, 0)',
+                          'rgb(0, 0, 102)',
+                          'rgb(102, 0, 102)',
+                          'rgb(102, 0, 51)',
+                          'rgb((153, 0, 51)',
+                          'rgb(153, 51, 0)',
+                          'rgb(204, 102, 0)'
+                        ],
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+                });
+              </script>
+              <!-- End Bar CHart -->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <%}%>
+  </main><!-- End #main -->
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <%-include('../components/head')%>
+
+
+</body>
+
+</html>
