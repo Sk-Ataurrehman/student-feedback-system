@@ -3,7 +3,11 @@ var router = express.Router();
 const mongoose = require("mongoose");
 
 var checkLogin = require("../../middlewares/check-student-login");
+
 const Course = require("../../models/feedbacks/course");
+const Internship = require("../../models/feedbacks/internship");
+const Industrial = require("../../models/feedbacks/industrial");
+const Seminar = require("../../models/feedbacks/seminar");
 
 router.get("/course", checkLogin, (req, res, next) => {
   res.render("studentViews/feedbacks/course");
@@ -56,6 +60,114 @@ router.post("/course", checkLogin, (req, res, next) => {
   });
 
   course
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/internship", checkLogin, (req, res, next) => {
+  const internship = new Internship({
+    _id: new mongoose.Types.ObjectId(),
+    acadyear: req.body.acadyear,
+    place: req.body.place,
+    date: req.body.date,
+    department: req.body.department,
+    semester: req.body.semester,
+    outcomes: req.body.outcomes, // marks from here
+    contents: req.body.content,
+    session: req.body.session,
+    duration: req.body.duration,
+    informative: req.body.informative,
+    newskills: req.body.newskills,
+  });
+  console.log(internship);
+  internship
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/internship", checkLogin, (req, res, next) => {
+  const internship = new Internship({
+    _id: new mongoose.Types.ObjectId(),
+    acadyear: req.body.acadyear,
+    place: req.body.place,
+    date: req.body.date,
+    department: req.body.department,
+    semester: req.body.semester,
+    outcomes: req.body.outcomes, // marks from here
+    contents: req.body.content,
+    session: req.body.session,
+    duration: req.body.duration,
+    informative: req.body.informative,
+    newskills: req.body.newskills,
+  });
+  console.log(internship);
+  internship
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/industrial", checkLogin, (req, res, next) => {
+  const industrial = new Industrial({
+    _id: new mongoose.Types.ObjectId(),
+    acadyear: req.body.acadyear,
+    place: req.body.place,
+    date: req.body.date,
+    department: req.body.department,
+    semester: req.body.semester,
+    outcomes: req.body.outcomes, // marks from here
+    content: req.body.content,
+    knowledge: req.body.knowledge,
+    duration: req.body.duration,
+    suggestion: req.body.suggestion,
+  });
+  console.log(industrial);
+  industrial
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/seminar", checkLogin, (req, res, next) => {
+  const seminar = new Seminar({
+    _id: new mongoose.Types.ObjectId(),
+    acadyear: req.body.acadyear,
+    place: req.body.place,
+    date: req.body.date,
+    department: req.body.department,
+    semester: req.body.semester,
+    topic: req.body.topicname,
+    outcomes: req.body.outcomes, // marks from here
+    content: req.body.content,
+    session: req.body.session,
+    duration: req.body.duration,
+    nexttopic: req.body.nexttopic,
+    newskills: req.body.newskills,
+  });
+  console.log(seminar);
+  seminar
     .save()
     .then((result) => {
       res.redirect("/student-feedback/dashboard");

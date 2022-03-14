@@ -37,7 +37,7 @@
             <div class="card-body">
             <br>
               <!-- Custom Styled Validation -->
-              <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+              <form action="/student-feedback/feedbacks/seminar" method="post" class="needs-validation" novalidate accept-charset="utf-8">
                 <div class="row g-2">
                   
                     <div class="mb-3 col-md-4">
@@ -49,9 +49,9 @@
 
                     <div class="mb-3 col-md-4">
                       <label for="place" class="form-label">Place</label>
-                      <input type="text" class="form-control" name="place" placeholder="Place of Visit" required>
+                      <input type="text" class="form-control" name="place" placeholder="Place of Seminar" required>
                       <div class="valid-feedback">Looks good!</div>
-                      <div class="invalid-feedback">Please enter Place Of Visit.</div>
+                      <div class="invalid-feedback">Please enter Place.</div>
                     </div>
 
                     <div class="mb-3 col-md-4">
@@ -124,42 +124,42 @@
                         <tr>
                             <td>1</td>
                             <td>The outcomes of the expert lecture/seminar/workshop were clearly defined</td>
-                            <td><input type="radio" name="outcomes" value="1"></td>
-                            <td><input type="radio" name="outcomes" value="2"></td>
-                            <td><input type="radio" name="outcomes" value="3"></td>
-                            <td><input type="radio" name="outcomes" value="4"></td>
                             <td><input type="radio" name="outcomes" value="5"></td>
+                            <td><input type="radio" name="outcomes" value="4"></td>
+                            <td><input type="radio" name="outcomes" value="3"></td>
+                            <td><input type="radio" name="outcomes" value="2"></td>
+                            <td><input type="radio" name="outcomes" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>2</td>
                           <td>The content covered were relevant to the expected course/program outcomes</td>
-                          <td><input type="radio" name="content" value="1"></td>
-                          <td><input type="radio" name="content" value="2"></td>
-                          <td><input type="radio" name="content" value="3"></td>
-                          <td><input type="radio" name="content" value="4"></td>
                           <td><input type="radio" name="content" value="5"></td>
+                          <td><input type="radio" name="content" value="4"></td>
+                          <td><input type="radio" name="content" value="3"></td>
+                          <td><input type="radio" name="content" value="2"></td>
+                          <td><input type="radio" name="content" value="1"></td>
                           
                         </tr>
 
                         <tr>
                           <td>3</td>
                           <td>The session has enhanced the understanding of the subject knowledge</td>
-                          <td><input type="radio" name="session" value="1"></td>
-                          <td><input type="radio" name="session" value="2"></td>
-                          <td><input type="radio" name="session" value="3"></td>
-                          <td><input type="radio" name="session" value="4"></td>
                           <td><input type="radio" name="session" value="5"></td>
+                          <td><input type="radio" name="session" value="4"></td>
+                          <td><input type="radio" name="session" value="3"></td>
+                          <td><input type="radio" name="session" value="2"></td>
+                          <td><input type="radio" name="session" value="1"></td>
                         </tr>
                         
                         <tr>
                           <td>4</td>
                           <td>The duration and the scheduling of the session was satisfactory</td>
-                          <td><input type="radio" name="duration" value="1"></td>
-                          <td><input type="radio" name="duration" value="2"></td>
-                          <td><input type="radio" name="duration" value="3"></td>
-                          <td><input type="radio" name="duration" value="4"></td>
                           <td><input type="radio" name="duration" value="5"></td>
+                          <td><input type="radio" name="duration" value="4"></td>
+                          <td><input type="radio" name="duration" value="3"></td>
+                          <td><input type="radio" name="duration" value="2"></td>
+                          <td><input type="radio" name="duration" value="1"></td>
                         </tr>
 
                     </tbody>
@@ -178,8 +178,8 @@
 
                 <div class="row g-2">
                   <div class="col-lg-12">
-                    <label for="suggestion" class="form-label">What new knowledge or skill did you learn on the Internship?</label>
-                    <textarea class="form-control" name="suggestion" placeholder="Skills or Knowledge you learned" required></textarea>
+                    <label for="newskills" class="form-label">What new knowledge or skill did you learn in this Seminar/Workshop/Expert Lecture?</label>
+                    <textarea class="form-control" name="newskills" placeholder="Skills or Knowledge you learned" required></textarea>
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">Please enter your suggestions.</div>
                   </div>
