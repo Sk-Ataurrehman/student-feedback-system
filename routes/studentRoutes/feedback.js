@@ -8,6 +8,7 @@ const Course = require("../../models/feedbacks/course");
 const Internship = require("../../models/feedbacks/internship");
 const Industrial = require("../../models/feedbacks/industrial");
 const Seminar = require("../../models/feedbacks/seminar");
+const Alumni = require("../../models/feedbacks/alumni");
 
 router.get("/course", checkLogin, (req, res, next) => {
   res.render("studentViews/feedbacks/course");
@@ -168,6 +169,40 @@ router.post("/seminar", checkLogin, (req, res, next) => {
   });
   console.log(seminar);
   seminar
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/alumni", checkLogin, (req, res, next) => {
+  const alumni = new Alumni({
+    _id: new mongoose.Types.ObjectId(),
+    yearpassing: req.body.yearpassing,
+    date: req.body.date,
+    department: req.body.department,
+    employer: req.body.employer,
+    position: req.body.position,
+    proud: req.body.proud, // marks from here
+    activities: req.body.activities,
+    contribute: req.body.contribute,
+    grievance: req.body.grievance,
+    equipments: req.body.equipments,
+    relevant: req.body.relevant,
+    technical: req.body.technical,
+    placement: req.body.placement,
+    association: req.body.association,
+    updates: req.body.updates,
+    rate: req.body.rate,
+    hospitality: req.body.hospitality,
+    frequently: req.body.frequently,
+  });
+
+  alumni
     .save()
     .then((result) => {
       res.redirect("/student-feedback/dashboard");

@@ -5,6 +5,7 @@ const Course = require("../../models/feedbacks/course");
 const Internship = require("../../models/feedbacks/internship");
 const Industrial = require("../../models/feedbacks/industrial");
 const Seminar = require("../../models/feedbacks/seminar");
+const Alumni = require("../../models/feedbacks/alumni");
 
 const checkLogin = require("../../middlewares/check-login");
 
@@ -22,6 +23,10 @@ router.get("/industrial", (req, res, next) => {
 
 router.get("/seminar", (req, res, next) => {
   res.render("adminViews/analysis/seminar", { avgssem: {}, noents: false });
+});
+
+router.get("/alumni", (req, res, next) => {
+  res.render("adminViews/analysis/alumni", { avgsal: {}, noents: false });
 });
 
 router.post("/course", checkLogin, (req, res, next) => {
@@ -220,4 +225,64 @@ router.post("/seminar", checkLogin, (req, res, next) => {
     });
 });
 
+router.post("/alumni", checkLogin, (req, res, next) => {
+  Alumni.find({
+    yearpassing: req.body.acadyear,
+    department: req.body.department,
+  })
+    .exec()
+    .then((alumnis) => {
+      if (alumnis.length < 1) {
+        return res.render("adminViews/analysis/alumni", {
+          avgsal: {},
+          noents: true,
+        });
+      }
+      var sumsal = {
+        proud: 0,
+        activities: 0,
+        contribute: 0,
+        grievance: 0,
+        equipments: 0,
+        relevant: 0,
+        technical: 0,
+        placement: 0,
+        association: 0,
+        updates: 0,
+        rate: 0,
+        hospitality: 0,
+        frequently: 0,
+      };
+
+      console.log(alumnis.length);
+      alumnis.forEach((element) => {
+        sumsal.proud += parseInt(element.proud);
+        sumsal.activities += parseInt(element.activities);
+        sumsal.contribute += parseInt(element.contribute);
+        sumsal.grievance += parseInt(element.grievance);
+        sumsal.equipments += parseInt(element.equipments);
+        sumsal.relevant += parseInt(element.relevant);
+        sumsal.technical += parseInt(element.technical);
+        sumsal.placement += parseInt(element.placement);
+        sumsal.association += parseInt(element.association);
+        sumsal.updates += parseInt(element.updates);
+        sumsal.rate += parseInt(element.rate);
+        sumsal.hospitality += parseInt(element.hospitality);
+        sumsal.frequently += parseInt(element.frequently);
+      });
+      console.log(sumsal);
+
+      Object.keys(sumsal).map(function (key, index) {
+        sumsal[key] /= alumnis.length;
+      });
+      console.log(sumsal);
+      res.render("adminViews/analysis/alumni", {
+        avgsal: sumsal,
+        noents: false,
+      });
+    })
+    .catch((err) => {
+      res.render("error", { error: err, message: err.message });
+    });
+});
 module.exports = router;
