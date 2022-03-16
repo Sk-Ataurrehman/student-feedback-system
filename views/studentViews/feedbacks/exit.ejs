@@ -37,19 +37,19 @@
             <div class="card-body">
             <br>
               <!-- Custom Styled Validation -->
-              <form action="/admin-feedback/students/add-student" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+              <form action="/student-feedback/feedbacks/exit" method="post" class="needs-validation" novalidate accept-charset="utf-8">
                 <div class="row g-2">
                   
                     <div class="mb-3 col-md-4">
                         <label for="acadyear" class="form-label">Year of Passing</label>
-                        <input type="text" class="form-control" name="yearpass" placeholder="Year of Passing" required>
+                        <input type="text" class="form-control" name="yearpassing" placeholder="Year of Passing" required>
                         <div class="valid-feedback">Looks good!</div>
                         <div class="invalid-feedback">Please enter Passing Year.</div>
                     </div>
 
                     <div class="mb-3 col-md-4">
                       <label for="date" class="form-label">Date</label>
-                      <input type="date" class="form-control" name="date">
+                      <input type="date" name="date" class="form-control" name="date">
                     </div>
 
                     <div class="mb-3 col-md-4">
@@ -68,7 +68,7 @@
 
                     <div class="mb-3 col-md-4">
                       <label for="department" class="form-label">Current Status</label>
-                      <select name="department" class="form-select" required>
+                      <select name="status" class="form-select" required>
                           <option value="" selected>Choose current status</option>
                           <option value="Currently placed">Curretly placed</option>
                           <option value="Higher studies">Going for higher studies</option>
@@ -113,29 +113,29 @@
                         <tr>
                             <td>1</td>
                             <td>Did you feel your diploma education prepared you for the initial job and/or higher studise?</td>
-                            <td><input type="radio" name="prepared" value="1"></td>
-                            <td><input type="radio" name="prepared" value="2"></td>
-                            <td><input type="radio" name="prepared" value="3"></td>
                             <td><input type="radio" name="prepared" value="4"></td>
+                            <td><input type="radio" name="prepared" value="3"></td>
+                            <td><input type="radio" name="prepared" value="2"></td>
+                            <td><input type="radio" name="prepared" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>2</td>
                           <td>Knowledge gained has boosted my confidence level to face challenges.</td>
-                          <td><input type="radio" name="confidence" value="1"></td>
-                          <td><input type="radio" name="confidence" value="2"></td>
-                          <td><input type="radio" name="confidence" value="3"></td>
                           <td><input type="radio" name="confidence" value="4"></td>
+                          <td><input type="radio" name="confidence" value="3"></td>
+                          <td><input type="radio" name="confidence" value="2"></td>
+                          <td><input type="radio" name="confidence" value="1"></td>
                           
                         </tr>
 
                         <tr>
                           <td>3</td>
                           <td>I'm able to develop competencies through self-education for lifelong learning.</td>
-                          <td><input type="radio" name="competencies" value="1"></td>
-                          <td><input type="radio" name="competencies" value="2"></td>
-                          <td><input type="radio" name="competencies" value="3"></td>
                           <td><input type="radio" name="competencies" value="4"></td>
+                          <td><input type="radio" name="competencies" value="3"></td>
+                          <td><input type="radio" name="competencies" value="2"></td>
+                          <td><input type="radio" name="competencies" value="1"></td>
                         </tr>
                     </tbody>
                   </table>
@@ -203,8 +203,8 @@
                 <br>
                 <div class="row g-2">
                   <div class="col-lg-12">
-                    <label for="values" class="form-label">2. What you liked most in Saboo Siddik? </label>
-                    <input type="text" class="form-control" name="values" placeholder="Please Specify what you liked"></textarea>
+                    <label for="liked" class="form-label">2. What you liked most in Saboo Siddik? </label>
+                    <input type="text" class="form-control" name="liked" placeholder="Please Specify what you liked"></textarea>
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">Please specify what you liked.</div>
                   </div>
@@ -213,8 +213,8 @@
                 <br>
                 <div class="row g-2">
                   <div class="col-lg-12">
-                    <label for="values" class="form-label">3. Was there any role model for you in Saboo Siddik during your student-ship? </label>
-                    <input type="text" class="form-control" name="values" placeholder="Please Specify the role model"></textarea>
+                    <label for="model" class="form-label">3. Was there any role model for you in Saboo Siddik during your student-ship? </label>
+                    <input type="text" class="form-control" name="model" placeholder="Please Specify the role model"></textarea>
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">Please specify the value.</div>
                   </div>
@@ -223,8 +223,8 @@
                 <br>
                 <div class="row g-2">
                   <div class="col-lg-12">
-                    <label for="values" class="form-label">4. Most inspiring faculties you would like to name. </label>
-                    <input type="text" class="form-control" name="values" placeholder="Please Specify the value"></textarea>
+                    <label for="inspiring" class="form-label">4. Most inspiring faculties you would like to name. </label>
+                    <input type="text" class="form-control" name="inspiring" placeholder="Please Specify the value"></textarea>
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">Please specify the value.</div>
                   </div>
@@ -233,7 +233,7 @@
                 <br>
                 <div class="row g-2">
                   <div class="text-bold">
-                    <b>iii. Administration and faculties.</b>
+                    <b>iii. Administration and Facilities.</b>
                   </div>
                 </div> 
 
@@ -256,138 +256,138 @@
                         <tr>
                             <td>1</td>
                             <td>Head of the department</td>
-                            <td><input type="radio" name="hod" value="1"></td>
-                            <td><input type="radio" name="hod" value="2"></td>
-                            <td><input type="radio" name="hod" value="3"></td>
                             <td><input type="radio" name="hod" value="4"></td>
+                            <td><input type="radio" name="hod" value="3"></td>
+                            <td><input type="radio" name="hod" value="2"></td>
+                            <td><input type="radio" name="hod" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>2</td>
                           <td>Teaching Faculty</td>
-                          <td><input type="radio" name="faculty" value="1"></td>
-                          <td><input type="radio" name="faculty" value="2"></td>
-                          <td><input type="radio" name="faculty" value="3"></td>
                           <td><input type="radio" name="faculty" value="4"></td>
+                          <td><input type="radio" name="faculty" value="3"></td>
+                          <td><input type="radio" name="faculty" value="2"></td>
+                          <td><input type="radio" name="faculty" value="1"></td>
                           
                         </tr>
 
                         <tr>
                           <td>3</td>
                           <td>Non-teaching staff</td>
-                          <td><input type="radio" name="nonteaching" value="1"></td>
-                          <td><input type="radio" name="nonteaching" value="2"></td>
-                          <td><input type="radio" name="nonteaching" value="3"></td>
                           <td><input type="radio" name="nonteaching" value="4"></td>
+                          <td><input type="radio" name="nonteaching" value="3"></td>
+                          <td><input type="radio" name="nonteaching" value="2"></td>
+                          <td><input type="radio" name="nonteaching" value="1"></td>
                         </tr>
                         
                         <tr>
                           <td>4</td>
                           <td>Library</td>
-                          <td><input type="radio" name="library" value="1"></td>
-                          <td><input type="radio" name="library" value="2"></td>
-                          <td><input type="radio" name="library" value="3"></td>
                           <td><input type="radio" name="library" value="4"></td>
+                          <td><input type="radio" name="library" value="3"></td>
+                          <td><input type="radio" name="library" value="2"></td>
+                          <td><input type="radio" name="library" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>5</td>
                           <td>Laboratories</td>
-                          <td><input type="radio" name="laboratories" value="1"></td>
-                          <td><input type="radio" name="laboratories" value="2"></td>
-                          <td><input type="radio" name="laboratories" value="3"></td>
                           <td><input type="radio" name="laboratories" value="4"></td>
+                          <td><input type="radio" name="laboratories" value="3"></td>
+                          <td><input type="radio" name="laboratories" value="2"></td>
+                          <td><input type="radio" name="laboratories" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>6</td>
                           <td>Administration</td>
-                          <td><input type="radio" name="administration" value="1"></td>
-                          <td><input type="radio" name="administration" value="2"></td>
-                          <td><input type="radio" name="administration" value="3"></td>
                           <td><input type="radio" name="administration" value="4"></td>
+                          <td><input type="radio" name="administration" value="3"></td>
+                          <td><input type="radio" name="administration" value="2"></td>
+                          <td><input type="radio" name="administration" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>7</td>
                           <td>Training and Placement Officer</td>
-                          <td><input type="radio" name="technical" value="1"></td>
-                          <td><input type="radio" name="technical" value="2"></td>
-                          <td><input type="radio" name="technical" value="3"></td>
-                          <td><input type="radio" name="technical" value="4"></td>
+                          <td><input type="radio" name="tpo" value="4"></td>
+                          <td><input type="radio" name="tpo" value="3"></td>
+                          <td><input type="radio" name="tpo" value="2"></td>
+                          <td><input type="radio" name="tpo" value="1"></td>
                         </tr>
 
 
                         <tr>
                           <td>8</td>
                           <td>Campus Placement opportunities</td>
-                          <td><input type="radio" name="placement" value="1"></td>
-                          <td><input type="radio" name="placement" value="2"></td>
-                          <td><input type="radio" name="placement" value="3"></td>
                           <td><input type="radio" name="placement" value="4"></td>
+                          <td><input type="radio" name="placement" value="3"></td>
+                          <td><input type="radio" name="placement" value="2"></td>
+                          <td><input type="radio" name="placement" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>9</td>
                           <td>Discipline</td>
-                          <td><input type="radio" name="discipline" value="1"></td>
-                          <td><input type="radio" name="discipline" value="2"></td>
-                          <td><input type="radio" name="discipline" value="3"></td>
                           <td><input type="radio" name="discipline" value="4"></td>
+                          <td><input type="radio" name="discipline" value="3"></td>
+                          <td><input type="radio" name="discipline" value="2"></td>
+                          <td><input type="radio" name="discipline" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>10</td>
                           <td>Overall environment</td>
-                          <td><input type="radio" name="environment" value="1"></td>
-                          <td><input type="radio" name="environment" value="2"></td>
-                          <td><input type="radio" name="environment" value="3"></td>
                           <td><input type="radio" name="environment" value="4"></td>
+                          <td><input type="radio" name="environment" value="3"></td>
+                          <td><input type="radio" name="environment" value="2"></td>
+                          <td><input type="radio" name="environment" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>11</td>
                           <td>Canteen</td>
-                          <td><input type="radio" name="canteen" value="1"></td>
-                          <td><input type="radio" name="canteen" value="2"></td>
-                          <td><input type="radio" name="canteen" value="3"></td>
                           <td><input type="radio" name="canteen" value="4"></td>
+                          <td><input type="radio" name="canteen" value="3"></td>
+                          <td><input type="radio" name="canteen" value="2"></td>
+                          <td><input type="radio" name="canteen" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>12</td>
                           <td>Drinking water</td>
-                          <td><input type="radio" name="water" value="1"></td>
-                          <td><input type="radio" name="water" value="2"></td>
-                          <td><input type="radio" name="water" value="3"></td>
                           <td><input type="radio" name="water" value="4"></td>
+                          <td><input type="radio" name="water" value="3"></td>
+                          <td><input type="radio" name="water" value="2"></td>
+                          <td><input type="radio" name="water" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>13</td>
                           <td>Internet Facility</td>
-                          <td><input type="radio" name="internet" value="1"></td>
-                          <td><input type="radio" name="internet" value="2"></td>
-                          <td><input type="radio" name="internet" value="3"></td>
                           <td><input type="radio" name="internet" value="4"></td>
+                          <td><input type="radio" name="internet" value="3"></td>
+                          <td><input type="radio" name="internet" value="2"></td>
+                          <td><input type="radio" name="internet" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>14</td>
                           <td>Cleanliness</td>
-                          <td><input type="radio" name="cleanliness" value="1"></td>
-                          <td><input type="radio" name="cleanliness" value="2"></td>
-                          <td><input type="radio" name="cleanliness" value="3"></td>
                           <td><input type="radio" name="cleanliness" value="4"></td>
+                          <td><input type="radio" name="cleanliness" value="3"></td>
+                          <td><input type="radio" name="cleanliness" value="2"></td>
+                          <td><input type="radio" name="cleanliness" value="1"></td>
                         </tr>
 
                         <tr>
                           <td>15</td>
                           <td>Resolution of greviences</td>
-                          <td><input type="radio" name="resolution" value="1"></td>
-                          <td><input type="radio" name="resolution" value="2"></td>
-                          <td><input type="radio" name="resolution" value="3"></td>
                           <td><input type="radio" name="resolution" value="4"></td>
+                          <td><input type="radio" name="resolution" value="3"></td>
+                          <td><input type="radio" name="resolution" value="2"></td>
+                          <td><input type="radio" name="resolution" value="1"></td>
                         </tr>
 
 

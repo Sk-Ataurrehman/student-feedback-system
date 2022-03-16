@@ -6,6 +6,7 @@ const Internship = require("../../models/feedbacks/internship");
 const Industrial = require("../../models/feedbacks/industrial");
 const Seminar = require("../../models/feedbacks/seminar");
 const Alumni = require("../../models/feedbacks/alumni");
+const Exit = require("../../models/feedbacks/exit");
 
 const checkLogin = require("../../middlewares/check-login");
 
@@ -13,20 +14,24 @@ router.get("/course", checkLogin, (req, res, next) => {
   res.render("adminViews/analysis/course", { avgs: {}, noents: false });
 });
 
-router.get("/internship", (req, res, next) => {
+router.get("/internship", checkLogin, (req, res, next) => {
   res.render("adminViews/analysis/internship", { avgsint: {}, noents: false });
 });
 
-router.get("/industrial", (req, res, next) => {
+router.get("/industrial", checkLogin, (req, res, next) => {
   res.render("adminViews/analysis/industrial", { avgsind: {}, noents: false });
 });
 
-router.get("/seminar", (req, res, next) => {
+router.get("/seminar", checkLogin, (req, res, next) => {
   res.render("adminViews/analysis/seminar", { avgssem: {}, noents: false });
 });
 
-router.get("/alumni", (req, res, next) => {
+router.get("/alumni", checkLogin, (req, res, next) => {
   res.render("adminViews/analysis/alumni", { avgsal: {}, noents: false });
+});
+
+router.get("/exit", (req, res, next) => {
+  res.render("adminViews/analysis/exit", { avgsex: {}, noents: false });
 });
 
 router.post("/course", checkLogin, (req, res, next) => {
@@ -238,6 +243,8 @@ router.post("/alumni", checkLogin, (req, res, next) => {
           noents: true,
         });
       }
+      var freq1 = 0;
+      var freq2 = 0;
       var sumsal = {
         proud: 0,
         activities: 0,
@@ -251,10 +258,8 @@ router.post("/alumni", checkLogin, (req, res, next) => {
         updates: 0,
         rate: 0,
         hospitality: 0,
-        frequently: 0,
       };
 
-      console.log(alumnis.length);
       alumnis.forEach((element) => {
         sumsal.proud += parseInt(element.proud);
         sumsal.activities += parseInt(element.activities);
@@ -268,16 +273,97 @@ router.post("/alumni", checkLogin, (req, res, next) => {
         sumsal.updates += parseInt(element.updates);
         sumsal.rate += parseInt(element.rate);
         sumsal.hospitality += parseInt(element.hospitality);
-        sumsal.frequently += parseInt(element.frequently);
-      });
-      console.log(sumsal);
 
+        if (parseInt(element.frequently) == 1) {
+          freq1 += 1;
+        } else if (parseInt(element.frequently) == 2) {
+          freq2 += 1;
+        }
+      });
+      console.log(alumnis.length);
+      console.log(freq1);
+      console.log(freq2);
+      freq1 = parseFloat((freq1 / alumnis.length) * 100).toFixed(2);
+      freq2 = parseFloat((freq2 / alumnis.length) * 100).toFixed(2);
       Object.keys(sumsal).map(function (key, index) {
         sumsal[key] /= alumnis.length;
+        sumsal[key] = parseFloat(sumsal[key]).toFixed(2);
       });
-      console.log(sumsal);
       res.render("adminViews/analysis/alumni", {
         avgsal: sumsal,
+        freq1: freq1,
+        freq2: freq2,
+        noents: false,
+      });
+    })
+    .catch((err) => {
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/exit", (req, res, next) => {
+  console.log(req.body.department);
+  Exit.find({
+    yearpassing: req.body.yearpassing,
+    department: req.body.department,
+  })
+    .exec()
+    .then((exits) => {
+      if (exits.length < 1) {
+        return res.render("adminViews/analysis/exit", {
+          avgsex: {},
+          noents: true,
+        });
+      }
+      var sumsex = {
+        prepared: 0, //i
+        confidence: 0,
+        competencies: 0,
+        hod: 0, //iii
+        faculty: 0,
+        nonteaching: 0,
+        library: 0,
+        laboratories: 0,
+        administration: 0,
+        tpo: 0,
+        placement: 0,
+        discipline: 0,
+        environment: 0,
+        canteen: 0,
+        water: 0,
+        internet: 0,
+        cleanliness: 0,
+        resolution: 0,
+      };
+
+      console.log(exits.length);
+      exits.forEach((element) => {
+        sumsex.prepared += parseInt(element.prepared);
+        sumsex.confidence += parseInt(element.confidence);
+        sumsex.competencies += parseInt(element.competencies);
+        sumsex.hod += parseInt(element.hod);
+        sumsex.faculty += parseInt(element.faculty);
+        sumsex.nonteaching += parseInt(element.nonteaching);
+        sumsex.library += parseInt(element.library);
+        sumsex.laboratories += parseInt(element.laboratories);
+        sumsex.administration += parseInt(element.administration);
+        sumsex.tpo += parseInt(element.tpo);
+        sumsex.placement += parseInt(element.placement);
+        sumsex.discipline += parseInt(element.discipline);
+        sumsex.environment += parseInt(element.environment);
+        sumsex.canteen += parseInt(element.canteen);
+        sumsex.water += parseInt(element.water);
+        sumsex.internet += parseInt(element.internet);
+        sumsex.cleanliness += parseInt(element.cleanliness);
+        sumsex.resolution += parseInt(element.resolution);
+      });
+      console.log(sumsex);
+
+      Object.keys(sumsex).map(function (key, index) {
+        sumsex[key] /= exits.length;
+      });
+      res.render("adminViews/analysis/exit", {
+        avgsex: sumsex,
         noents: false,
       });
     })

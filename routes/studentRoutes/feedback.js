@@ -9,6 +9,7 @@ const Internship = require("../../models/feedbacks/internship");
 const Industrial = require("../../models/feedbacks/industrial");
 const Seminar = require("../../models/feedbacks/seminar");
 const Alumni = require("../../models/feedbacks/alumni");
+const Exit = require("../../models/feedbacks/exit");
 
 router.get("/course", checkLogin, (req, res, next) => {
   res.render("studentViews/feedbacks/course");
@@ -203,6 +204,53 @@ router.post("/alumni", checkLogin, (req, res, next) => {
   });
 
   alumni
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/exit", checkLogin, (req, res, next) => {
+  const exit = new Exit({
+    _id: new mongoose.Types.ObjectId(),
+    yearpassing: req.body.yearpassing,
+    date: req.body.date,
+    department: req.body.department,
+    status: req.body.status,
+    position: req.body.position,
+    prepared: req.body.prepared, // marks from here
+    confidence: req.body.confidence,
+    competencies: req.body.competencies,
+    otherskills: req.body.otherskills,
+    activities: req.body.activities,
+    achievements: req.body.achievements,
+    values: req.body.values,
+    liked: req.body.liked,
+    model: req.body.model,
+    inspiring: req.body.inspiring,
+    hod: req.body.hod,
+    faculty: req.body.faculty,
+    nonteaching: req.body.nonteaching,
+    library: req.body.library,
+    laboratories: req.body.laboratories,
+    administration: req.body.administration,
+    tpo: req.body.tpo,
+    placement: req.body.placement,
+    discipline: req.body.discipline,
+    environment: req.body.environment,
+    canteen: req.body.canteen,
+    water: req.body.water,
+    internet: req.body.internet,
+    cleanliness: req.body.cleanliness,
+    resolution: req.body.resolution,
+    suggestions: req.body.suggestions,
+  });
+  console.log(exit);
+  exit
     .save()
     .then((result) => {
       res.redirect("/student-feedback/dashboard");
