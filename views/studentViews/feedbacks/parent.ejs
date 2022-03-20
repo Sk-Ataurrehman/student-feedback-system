@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Parents Feedbacks | Student Feedback System</title>
+    <%-include('../components/head')%>
+  </head>
+<body>
+
+  <!-- ======= Header ======= -->
+  <%-include('../components/header')%>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%-include('../components/navbar')%>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Parents Feedbacks</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/student-feedback/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Feedbacks</li>
+          <li class="breadcrumb-item active">Parents Feedbacks</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+            <br>
+              <!-- Custom Styled Validation -->
+              <form action="/student-feedback/feedbacks/parent" method="post" class="needs-validation" novalidate accept-charset="utf-8">
+                <div class="row g-2">
+                  <div class="mb-3 col-md-4">
+                    <label for="acadyear" class="form-label">Academic Year</label>
+                    <input type="text" class="form-control" name="acadyear" placeholder="Academic Year" required>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please enter Academic Year.</div>
+                  </div>  
+
+                    <div class="mb-3 col-md-4">
+                      <label for="parentname" class="form-label">Name of the parent</label>
+                      <input type="text" class="form-control" name="parentname" placeholder="Parent Name" required>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please enter Parent Name.</div>
+                    </div>
+                  
+                    <div class="mb-3 col-md-4">
+                        <label for="contact" class="form-label">Contact No.</label>
+                        <input type="text" class="form-control" name="contact" placeholder="Contact No" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter Contact.</div>
+                    </div>
+
+
+                    
+                </div>
+                <div class="row g-2">
+                  <div class="text-center" style="color: rgb(206, 7, 0);padding-bottom: 10px;">
+                    5 - Strongly Agree || 4 - Agree || 3 - Neutral || 2 - Disagree || 1 - Strongly Disagree
+                  </div>
+                </div>
+                <div class="row g-2">
+                    
+                  <table width="100%" class="table">
+                    <br>
+                    <thead>
+                      <tr>
+                        <th>Sr. No</th>
+                        <th>Particulars</th>
+                        <th>5</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>1</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr>
+                            <td>1</td>
+                            <td>Admission Procedure</td>
+                            <td><input type="radio" name="admission" value="5" required></td>
+                            <td><input type="radio" name="admission" value="4" required></td>
+                            <td><input type="radio" name="admission" value="3" required></td>
+                            <td><input type="radio" name="admission" value="2" required></td>
+                            <td><input type="radio" name="admission" value="1" required></td>
+                        </tr>
+
+                        <tr>
+                          <td>2</td>
+                          <td>Infrastructure and Lab facility</td>
+                          <td><input type="radio" name="infrastructure" value="5" required></td>
+                          <td><input type="radio" name="infrastructure" value="4" required></td>
+                          <td><input type="radio" name="infrastructure" value="3" required></td>
+                          <td><input type="radio" name="infrastructure" value="2" required></td>
+                          <td><input type="radio" name="infrastructure" value="1" required></td>
+                        </tr>
+
+                        <tr>
+                          <td>3</td>
+                          <td>Library</td>
+                          <td><input type="radio" name="library" value="5" required></td>
+                          <td><input type="radio" name="library" value="4" required></td>
+                          <td><input type="radio" name="library" value="3" required></td>
+                          <td><input type="radio" name="library" value="2" required></td>
+                          <td><input type="radio" name="library" value="1" required></td>
+                        </tr>
+                        
+                        <tr>
+                          <td>4</td>
+                          <td>Canteen and other facility</td>
+                          <td><input type="radio" name="canteen" value="5" required></td>
+                          <td><input type="radio" name="canteen" value="4" required></td>
+                          <td><input type="radio" name="canteen" value="3" required></td>
+                          <td><input type="radio" name="canteen" value="2" required></td>
+                          <td><input type="radio" name="canteen" value="1" required></td>                         
+                        </tr>
+                      
+                        <tr>
+                          <td>5</td>
+                          <td>Sports and Extra Curricular activities </td>
+                          <td><input type="radio" name="sports" value="5" required></td>
+                          <td><input type="radio" name="sports" value="4" required></td>
+                          <td><input type="radio" name="sports" value="3" required></td>
+                          <td><input type="radio" name="sports" value="2" required></td>
+                          <td><input type="radio" name="sports" value="1" required></td>
+                        </tr>
+
+                        <tr>
+                          <td>6</td>
+                          <td>Student's counseling and Mentoring</td>
+                          <td><input type="radio" name="counseling" value="5" required></td>
+                          <td><input type="radio" name="counseling" value="4" required></td>
+                          <td><input type="radio" name="counseling" value="3" required></td>
+                          <td><input type="radio" name="counseling" value="2" required></td>
+                          <td><input type="radio" name="counseling" value="1" required></td>
+                        </tr>
+
+                        <tr>
+                          <td>7</td>
+                          <td>Use of Information and Communication Tecnhonology in the college</td>
+                          <td><input type="radio" name="ict" value="5" required></td>
+                          <td><input type="radio" name="ict" value="4" required></td>
+                          <td><input type="radio" name="ict" value="3" required></td>
+                          <td><input type="radio" name="ict" value="2" required></td>
+                          <td><input type="radio" name="ict" value="1" required></td>                         
+                        </tr>
+
+                        <tr>
+                          <td>8</td>
+                          <td>Academic Discipline (i.e timely conduct of lectures, practical and related activiteis) observed by you</td>
+                          <td><input type="radio" name="discipline" value="5" required></td>
+                          <td><input type="radio" name="discipline" value="4" required></td>
+                          <td><input type="radio" name="discipline" value="3" required></td>
+                          <td><input type="radio" name="discipline" value="2" required></td>
+                          <td><input type="radio" name="discipline" value="1" required></td>
+                        </tr>
+
+                        <tr>
+                          <td>9</td>
+                          <td>Improvements in soft skills, knowledge, ethics, morality, oberved by you in your ward while studying in college</td>
+                          <td><input type="radio" name="improvements" value="5" required></td>
+                          <td><input type="radio" name="improvements" value="4" required></td>
+                          <td><input type="radio" name="improvements" value="3" required></td>
+                          <td><input type="radio" name="improvements" value="2" required></td>
+                          <td><input type="radio" name="improvements" value="1" required></td>                                                
+                        </tr>
+
+                        <tr>
+                          <td>10</td>
+                          <td>Examination system adopted by the college</td>
+                          <td><input type="radio" name="adopted" value="5" required></td>
+                          <td><input type="radio" name="adopted" value="4" required></td>
+                          <td><input type="radio" name="adopted" value="3" required></td>
+                          <td><input type="radio" name="adopted" value="2" required></td>
+                          <td><input type="radio" name="adopted" value="1" required></td>                      
+                        </tr>
+
+                        <tr>
+                          <td>11</td>
+                          <td>Evaluation and Feedback mechanism</td>
+                          <td><input type="radio" name="evaluation" value="5" required></td>
+                          <td><input type="radio" name="evaluation" value="4" required></td>
+                          <td><input type="radio" name="evaluation" value="3" required></td>
+                          <td><input type="radio" name="evaluation" value="2" required></td>
+                          <td><input type="radio" name="evaluation" value="1" required></td>                       
+                        </tr>
+
+                        <tr>
+                          <td>12</td>
+                          <td>Placements</td>
+                          <td><input type="radio" name="placements" value="5" required></td>
+                          <td><input type="radio" name="placements" value="4" required></td>
+                          <td><input type="radio" name="placements" value="3" required></td>
+                          <td><input type="radio" name="placements" value="2" required></td>
+                          <td><input type="radio" name="placements" value="1" required></td>                        
+                        </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row g-2">
+                  <div class="col-lg-12">
+                    <label for="suggestion" class="form-label">Any suggestions for improvements</label>
+                    <textarea class="form-control" name="suggestion" placeholder="Suggestions" required></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please enter your suggestions.</div>
+                  </div>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+
+            </div>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <%-include('../components/vendor')%>
+  
+
+</body>
+
+</html>

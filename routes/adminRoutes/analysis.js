@@ -7,6 +7,7 @@ const Industrial = require("../../models/feedbacks/industrial");
 const Seminar = require("../../models/feedbacks/seminar");
 const Alumni = require("../../models/feedbacks/alumni");
 const Exit = require("../../models/feedbacks/exit");
+const Parent = require("../../models/feedbacks/parent");
 
 const checkLogin = require("../../middlewares/check-login");
 
@@ -30,8 +31,12 @@ router.get("/alumni", checkLogin, (req, res, next) => {
   res.render("adminViews/analysis/alumni", { avgsal: {}, noents: false });
 });
 
-router.get("/exit", (req, res, next) => {
+router.get("/exit", checkLogin, (req, res, next) => {
   res.render("adminViews/analysis/exit", { avgsex: {}, noents: false });
+});
+
+router.get("/parent", checkLogin, (req, res, next) => {
+  res.render("adminViews/analysis/parent", { avgspa: {}, noents: false });
 });
 
 router.post("/course", checkLogin, (req, res, next) => {
@@ -371,4 +376,63 @@ router.post("/exit", (req, res, next) => {
       res.render("error", { error: err, message: err.message });
     });
 });
+
+router.post("/parent", checkLogin, (req, res, next) => {
+  Parent.find({
+    acadyear: req.body.acadyear,
+  })
+    .exec()
+    .then((parents) => {
+      if (parents.length < 1) {
+        return res.render("adminViews/analysis/course", {
+          avgspa: {},
+          noents: true,
+        });
+      }
+      var sumspa = {
+        admission: 0,
+        infrastructure: 0,
+        library: 0,
+        canteen: 0,
+        sports: 0,
+        counseling: 0,
+        ict: 0,
+        discipline: 0,
+        improvements: 0,
+        adopted: 0,
+        evaluation: 0,
+        placements: 0,
+      };
+
+      console.log(parents.length);
+      parents.forEach((element) => {
+        sumspa.admission += parseInt(element.admission);
+        sumspa.infrastructure += parseInt(element.infrastructure);
+        sumspa.library += parseInt(element.library);
+        sumspa.canteen += parseInt(element.canteen);
+        sumspa.sports += parseInt(element.sports);
+        sumspa.counseling += parseInt(element.counseling);
+        sumspa.ict += parseInt(element.ict);
+        sumspa.discipline += parseInt(element.discipline);
+        sumspa.improvements += parseInt(element.improvements);
+        sumspa.adopted += parseInt(element.adopted);
+        sumspa.evaluation += parseInt(element.evaluation);
+        sumspa.placements += parseInt(element.placements);
+      });
+      console.log(sumspa);
+
+      Object.keys(sumspa).map(function (key, index) {
+        sumspa[key] /= parents.length;
+      });
+      console.log(sumspa);
+      res.render("adminViews/analysis/parent", {
+        avgspa: sumspa,
+        noents: false,
+      });
+    })
+    .catch((err) => {
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
 module.exports = router;

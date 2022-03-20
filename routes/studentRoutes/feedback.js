@@ -10,6 +10,7 @@ const Industrial = require("../../models/feedbacks/industrial");
 const Seminar = require("../../models/feedbacks/seminar");
 const Alumni = require("../../models/feedbacks/alumni");
 const Exit = require("../../models/feedbacks/exit");
+const Parent = require("../../models/feedbacks/parent");
 
 router.get("/course", checkLogin, (req, res, next) => {
   res.render("studentViews/feedbacks/course");
@@ -33,6 +34,10 @@ router.get("/alumni", checkLogin, (req, res, next) => {
 
 router.get("/exit", checkLogin, (req, res, next) => {
   res.render("studentViews/feedbacks/exit");
+});
+
+router.get("/parent", checkLogin, (req, res, next) => {
+  res.render("studentViews/feedbacks/parent");
 });
 
 router.post("/course", checkLogin, (req, res, next) => {
@@ -251,6 +256,38 @@ router.post("/exit", checkLogin, (req, res, next) => {
   });
   console.log(exit);
   exit
+    .save()
+    .then((result) => {
+      res.redirect("/student-feedback/dashboard");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error", { error: err, message: err.message });
+    });
+});
+
+router.post("/parent", checkLogin, (req, res, next) => {
+  const parent = new Parent({
+    _id: new mongoose.Types.ObjectId(),
+    acadyear: req.body.acadyear,
+    parentname: req.body.parentname,
+    admission: req.body.admission,
+    infrastructure: req.body.infrastructure,
+    library: req.body.library,
+    canteen: req.body.canteen,
+    sports: req.body.sports,
+    counseling: req.body.counseling,
+    ict: req.body.ict, // marks from here
+    discipline: req.body.discipline,
+    improvements: req.body.improvements,
+    adopted: req.body.adopted,
+    evaluation: req.body.evaluation,
+    placements: req.body.placements,
+    suggestions: req.body.suggestion,
+  });
+
+  console.log(parent);
+  parent
     .save()
     .then((result) => {
       res.redirect("/student-feedback/dashboard");
