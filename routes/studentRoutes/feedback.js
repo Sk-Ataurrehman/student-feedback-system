@@ -63,6 +63,12 @@ router.post("/course", checkLogin, (req, res, next) => {
     evolution: req.body.test,
     ability: req.body.discipline,
     overall: req.body.overall,
+    displayed: req.body.displayed, //form2
+    test: req.body.class,
+    marks: req.body.marks,
+    curriculum: req.body.curriculum,
+    assessed: req.body.assessed,
+    classtest: req.body.classtest,
     suggestions: req.body.suggestion,
   });
 

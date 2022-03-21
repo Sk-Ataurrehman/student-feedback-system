@@ -69,6 +69,14 @@ router.post("/course", checkLogin, (req, res, next) => {
         ability: 0,
         overall: 0,
       };
+      var freq = {
+        displayed: { yes: 0, no: 0 }, //form2
+        test: { yes: 0, no: 0 },
+        marks: { yes: 0, no: 0 },
+        curriculum: { yes: 0, no: 0 },
+        assessed: { yes: 0, no: 0 },
+        classtest: { yes: 0, no: 0 },
+      };
 
       console.log(courses.length);
       courses.forEach((element) => {
@@ -86,14 +94,50 @@ router.post("/course", checkLogin, (req, res, next) => {
         sums.evolution += parseInt(element.evolution);
         sums.ability += parseInt(element.ability);
         sums.overall += parseInt(element.overall);
+
+        if (element.displayed == "Yes") freq.displayed.yes += 1;
+        else if (element.displayed == "No") freq.displayed.no += 1;
+
+        if (element.test == "Yes") freq.test.yes += 1;
+        else if (element.test == "No") freq.test.no += 1;
+
+        if (element.marks == "Yes") freq.marks.yes += 1;
+        else if (element.marks == "No") freq.marks.no += 1;
+
+        if (element.curriculum == "Yes") freq.curriculum.yes += 1;
+        else if (element.curriculum == "No") freq.curriculum.no += 1;
+
+        if (element.assessed == "Yes") freq.assessed.yes += 1;
+        else if (element.assessed == "No") freq.assessed.no += 1;
+
+        if (element.classtest == "Yes") freq.classtest.yes += 1;
+        else if (element.classtest == "No") freq.classtest.no += 1;
       });
-      console.log(sums);
 
       Object.keys(sums).map(function (key, index) {
         sums[key] /= courses.length;
       });
-      console.log(sums);
-      res.render("adminViews/analysis/course", { avgs: sums, noents: false });
+
+      freq.displayed.yes = (freq.displayed.yes / courses.length) * 100;
+      freq.test.yes = (freq.test.yes / courses.length) * 100;
+      freq.marks.yes = (freq.marks.yes / courses.length) * 100;
+      freq.curriculum.yes = (freq.curriculum.yes / courses.length) * 100;
+      freq.assessed.yes = (freq.assessed.yes / courses.length) * 100;
+      freq.classtest.yes = (freq.classtest.yes / courses.length) * 100;
+
+      freq.displayed.no = (freq.displayed.no / courses.length) * 100;
+      freq.test.no = (freq.test.no / courses.length) * 100;
+      freq.marks.no = (freq.marks.no / courses.length) * 100;
+      freq.curriculum.no = (freq.curriculum.no / courses.length) * 100;
+      freq.assessed.no = (freq.assessed.no / courses.length) * 100;
+      freq.classtest.no = (freq.classtest.no / courses.length) * 100;
+
+      console.log(freq);
+      res.render("adminViews/analysis/course", {
+        avgs: sums,
+        noents: false,
+        freq: freq,
+      });
     })
     .catch((err) => {
       res.render("error", { error: err, message: err.message });
