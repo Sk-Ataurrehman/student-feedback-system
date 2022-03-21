@@ -54,9 +54,14 @@
         <form action="/admin-feedback/analysis/internship" method="post" class="row g-3 needs-validation" novalidate>
           <div class="mb-3 col-md-2">
             <label for="acadyear" class="form-label">Academic Year</label>
-            <input type="text" class="form-control" name="acadyear" placeholder="(YYYY-YY)" required>
+            <select name="acadyear" class="form-select" required>
+                <option value="" selected>Choose Academic Year</option>
+                <%dates.forEach((element)=>{%>
+                  <option value="<%=element%>"><%=element%></option>
+                <%})%>
+            </select>
             <div class="valid-feedback">Looks good!</div>
-            <div class="invalid-feedback">Please enter Academic Year.</div>
+            <div class="invalid-feedback">Please select Academic Year.</div>
           </div>
 
           <div class="mb-3 col-md-2">

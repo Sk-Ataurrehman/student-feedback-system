@@ -12,19 +12,47 @@ const Parent = require("../../models/feedbacks/parent");
 const checkLogin = require("../../middlewares/check-login");
 
 router.get("/course", checkLogin, (req, res, next) => {
-  res.render("adminViews/analysis/course", { avgs: {}, noents: false });
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("adminViews/analysis/course", {
+    avgs: {},
+    noents: false,
+    dates: [date1, date2],
+  });
 });
 
 router.get("/internship", checkLogin, (req, res, next) => {
-  res.render("adminViews/analysis/internship", { avgsint: {}, noents: false });
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("adminViews/analysis/internship", {
+    avgsint: {},
+    noents: false,
+    dates: [date1, date2],
+  });
 });
 
 router.get("/industrial", checkLogin, (req, res, next) => {
-  res.render("adminViews/analysis/industrial", { avgsind: {}, noents: false });
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("adminViews/analysis/industrial", {
+    avgsind: {},
+    noents: false,
+    dates: [date1, date2],
+  });
 });
 
 router.get("/seminar", checkLogin, (req, res, next) => {
-  res.render("adminViews/analysis/seminar", { avgssem: {}, noents: false });
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("adminViews/analysis/seminar", {
+    avgssem: {},
+    noents: false,
+    dates: [date1, date2],
+  });
 });
 
 router.get("/alumni", checkLogin, (req, res, next) => {
@@ -36,10 +64,21 @@ router.get("/exit", checkLogin, (req, res, next) => {
 });
 
 router.get("/parent", checkLogin, (req, res, next) => {
-  res.render("adminViews/analysis/parent", { avgspa: {}, noents: false });
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("adminViews/analysis/parent", {
+    avgspa: {},
+    noents: false,
+    dates: [date1, date2],
+  });
 });
 
 router.post("/course", checkLogin, (req, res, next) => {
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+
   Course.find({
     acadyear: req.body.acadyear,
     department: req.body.department,
@@ -51,6 +90,7 @@ router.post("/course", checkLogin, (req, res, next) => {
         return res.render("adminViews/analysis/course", {
           avgs: {},
           noents: true,
+          dates: [date1, date2],
         });
       }
       var sums = {
@@ -137,6 +177,7 @@ router.post("/course", checkLogin, (req, res, next) => {
         avgs: sums,
         noents: false,
         freq: freq,
+        dates: [date1, date2],
       });
     })
     .catch((err) => {
@@ -145,6 +186,10 @@ router.post("/course", checkLogin, (req, res, next) => {
 });
 
 router.post("/internship", checkLogin, (req, res, next) => {
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+
   Internship.find({
     acadyear: req.body.acadyear,
     place: req.body.place,
@@ -157,6 +202,7 @@ router.post("/internship", checkLogin, (req, res, next) => {
         return res.render("adminViews/analysis/internship", {
           avgsint: {},
           noents: true,
+          dates: [date1, date2],
         });
       }
       var sumsint = {
@@ -184,6 +230,7 @@ router.post("/internship", checkLogin, (req, res, next) => {
       res.render("adminViews/analysis/internship", {
         avgsint: sumsint,
         noents: false,
+        dates: [date1, date2],
       });
     })
     .catch((err) => {
@@ -192,6 +239,10 @@ router.post("/internship", checkLogin, (req, res, next) => {
 });
 
 router.post("/industrial", (req, res, next) => {
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+
   Industrial.find({
     acadyear: req.body.acadyear,
     place: req.body.place,
@@ -204,6 +255,7 @@ router.post("/industrial", (req, res, next) => {
         return res.render("adminViews/analysis/industrial", {
           avgsind: {},
           noents: true,
+          dates: [date1, date2],
         });
       }
       var sumsind = {
@@ -228,6 +280,7 @@ router.post("/industrial", (req, res, next) => {
       res.render("adminViews/analysis/industrial", {
         avgsind: sumsind,
         noents: false,
+        dates: [date1, date2],
       });
     })
     .catch((err) => {
@@ -236,6 +289,10 @@ router.post("/industrial", (req, res, next) => {
 });
 
 router.post("/seminar", checkLogin, (req, res, next) => {
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+
   Seminar.find({
     acadyear: req.body.acadyear,
     place: req.body.place,
@@ -249,6 +306,7 @@ router.post("/seminar", checkLogin, (req, res, next) => {
         return res.render("adminViews/analysis/seminar", {
           avgssem: {},
           noents: true,
+          dates: [date1, date2],
         });
       }
       var sumssem = {
@@ -272,6 +330,7 @@ router.post("/seminar", checkLogin, (req, res, next) => {
       res.render("adminViews/analysis/seminar", {
         avgssem: sumssem,
         noents: false,
+        dates: [date1, date2],
       });
     })
     .catch((err) => {
@@ -422,15 +481,20 @@ router.post("/exit", (req, res, next) => {
 });
 
 router.post("/parent", checkLogin, (req, res, next) => {
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+
   Parent.find({
     acadyear: req.body.acadyear,
   })
     .exec()
     .then((parents) => {
       if (parents.length < 1) {
-        return res.render("adminViews/analysis/course", {
+        return res.render("adminViews/analysis/parent", {
           avgspa: {},
           noents: true,
+          dates: [date1, date2],
         });
       }
       var sumspa = {
@@ -472,6 +536,7 @@ router.post("/parent", checkLogin, (req, res, next) => {
       res.render("adminViews/analysis/parent", {
         avgspa: sumspa,
         noents: false,
+        dates: [date1, date2],
       });
     })
     .catch((err) => {

@@ -38,12 +38,17 @@
               <!-- Custom Styled Validation -->
               <form action="/student-feedback/feedbacks/parent" method="post" class="needs-validation" novalidate accept-charset="utf-8">
                 <div class="row g-2">
-                  <div class="mb-3 col-md-4">
-                    <label for="acadyear" class="form-label">Academic Year</label>
-                    <input type="text" class="form-control" name="acadyear" placeholder="Academic Year" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please enter Academic Year.</div>
-                  </div>  
+                    <div class="mb-3 col-md-4">
+                      <label for="acadyear" class="form-label">Academic Year</label>
+                      <select name="acadyear" class="form-select" required>
+                          <option value="" selected>Choose Academic Year</option>
+                          <%dates.forEach((element)=>{%>
+                            <option value="<%=element%>"><%=element%></option>
+                          <%})%>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Please select Academic Year.</div>
+                    </div>
 
                     <div class="mb-3 col-md-4">
                       <label for="parentname" class="form-label">Name of the parent</label>

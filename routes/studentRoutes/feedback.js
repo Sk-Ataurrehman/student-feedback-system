@@ -13,19 +13,41 @@ const Exit = require("../../models/feedbacks/exit");
 const Parent = require("../../models/feedbacks/parent");
 
 router.get("/course", checkLogin, (req, res, next) => {
-  res.render("studentViews/feedbacks/course");
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  console.log(date1);
+  console.log(date2);
+  res.render("studentViews/feedbacks/course", {
+    dates: [date1, date2],
+  });
 });
 
 router.get("/internship", checkLogin, (req, res, next) => {
-  res.render("studentViews/feedbacks/internship");
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("studentViews/feedbacks/internship", {
+    dates: [date1, date2],
+  });
 });
 
 router.get("/industrial-visit", checkLogin, (req, res, next) => {
-  res.render("studentViews/feedbacks/industrial");
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("studentViews/feedbacks/industrial", {
+    dates: [date1, date2],
+  });
 });
 
 router.get("/seminar", checkLogin, (req, res, next) => {
-  res.render("studentViews/feedbacks/seminar");
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("studentViews/feedbacks/seminar", {
+    dates: [date1, date2],
+  });
 });
 
 router.get("/alumni", checkLogin, (req, res, next) => {
@@ -37,7 +59,12 @@ router.get("/exit", checkLogin, (req, res, next) => {
 });
 
 router.get("/parent", checkLogin, (req, res, next) => {
-  res.render("studentViews/feedbacks/parent");
+  var date = new Date().getFullYear();
+  var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
+  var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+  res.render("studentViews/feedbacks/parent", {
+    dates: [date1, date2],
+  });
 });
 
 router.post("/course", checkLogin, (req, res, next) => {
