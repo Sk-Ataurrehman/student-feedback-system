@@ -25,6 +25,7 @@ router.post("/", (req, res, next) => {
             }
             if (result) {
               req.session.semail = student[0].email;
+              req.session.sname = student[0].name;
               req.session.sloggedIn = true;
               res.redirect("/student-feedback/dashboard");
             } else {

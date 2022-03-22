@@ -4,6 +4,10 @@
 <head>
   <title>Alumni Feedback | Student Feedback System</title>
   <%-include('../components/head')%>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>            
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
 
@@ -47,6 +51,7 @@
                         <div class="valid-feedback">Looks good!</div>
                         <div class="invalid-feedback">Please enter Passing Year.</div>
                     </div>
+
 
                     <div class="mb-3 col-md-4">
                       <label for="date" class="form-label">Date</label>
@@ -260,8 +265,14 @@
     </section>
 
   </main><!-- End #main -->
-
-  
+  <script type="text/javascript">
+    $(document).ready(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: 'L',
+            disabledHours: true,
+        });
+    });
+</script>
   <!-- Vendor JS Files -->
   <%-include('../components/vendor')%>
 

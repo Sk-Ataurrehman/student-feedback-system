@@ -7,9 +7,9 @@ const internshipSchema = new mongoose.Schema({
   date: { type: String, required: true },
   department: { type: String, required: true },
   semester: { type: String, required: true },
-  outcomes: { type: String, required: true },
+  outcomes: { type: String, required: true }, // marks
   contents: { type: String, required: true },
-  session: { type: String, required: true }, // marks from here
+  session: { type: String, required: true },
   duration: { type: String, required: true },
   informative: { type: String, required: true },
   newskills: { type: String, required: true },

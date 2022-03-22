@@ -55,6 +55,12 @@ app.use(
   })
 );
 
+app.use(function (req, res, next) {
+  res.locals.sloggedin = req.session.sloggedin;
+  res.locals.sname = req.session.sname;
+  next();
+});
+
 // Admin Routes
 app.use("/admin-feedback/login", adminLogin);
 app.use("/admin-feedback/logout", adminLogout);
