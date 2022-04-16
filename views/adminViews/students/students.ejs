@@ -54,6 +54,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <% var id = 0 %>
                   <% students.forEach(function(element){ %>
                     <tr>
                         <td><%=element.rollno%></td>
@@ -62,17 +63,36 @@
                         <td><%=element.parent_email%></td>
                         <td><%=element.department%></td>
                         <td><%=element.address%></td>
+                        <% id = element._id %> 
 
                         <td class="text-end">
                             <a href='/admin-feedback/students/edit-student?id=<%=element._id%>&rollno=<%=element.rollno%>&name=<%=element.name%>&email=<%=element.email%>&parent_email=<%=element.parent_email%>&department=<%=element.department%>&address=<%=element.address%>' class="btn btn-outline-info btn-rounded"><i class="bi bi-pen"></i></a>
-                            <a href="/admin-feedback/students/delete-student?id=<%=element._id%>" class="btn btn-outline-danger btn-rounded"><i class="bi bi-trash"></i></a>
+                            <a onclick="ask()"  data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-outline-danger btn-rounded"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                    <% }); %>
                   
                 </tbody>
               </table>
-              <!-- End Table with stripped rows -->
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Confirm Delete</h5>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure want to delete the Student?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
+                      <button type="button" class="btn btn-success" onclick="yes()">Yes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 
             </div>
           </div>
@@ -84,8 +104,17 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  
+  <script>
+    function yes(){
+      window.location="/admin-feedback/students/delete-student?id=<%=id%>"
+    }
+    
+  </script>
   <!-- Vendor JS Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
     <%-include('../components/vendor')%>
 
 

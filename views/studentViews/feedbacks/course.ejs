@@ -129,6 +129,7 @@
                             <td><input type="radio" name="punctuality" value="3" required></td>
                             <td><input type="radio" name="punctuality" value="2" required></td>
                             <td><input type="radio" name="punctuality" value="1" required></td>
+                            <div class="invalid-feedback">Please select one value.</div>
                         </tr>
 
                         <tr>
@@ -319,10 +320,13 @@
                           <td><input type="radio" name="classtest" value="Yes" required></td>
                           <td><input type="radio" name="classtest" value="No" required></td>
                         </tr>
-
+                        
                        
                     </tbody>
                   </table>
+                  <div id="msg">
+
+                  </div>
                 </div>
 
                 <div class="row g-2">
@@ -351,7 +355,7 @@
 
   <%-include('../components/vendor')%>
   
-
+  
 </body>
 
 </html>
