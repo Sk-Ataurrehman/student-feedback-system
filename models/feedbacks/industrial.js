@@ -9,7 +9,7 @@ const industrialSchema = new mongoose.Schema({
   semester: { type: String, required: true },
   outcomes: { type: String, required: true },
   content: { type: String, required: true },
-  knowledge: { type: String, required: true }, // marks from here
+  knowledge: { type: String, required: true },
   duration: { type: String, required: true },
   suggestion: { type: String, required: true },
 });

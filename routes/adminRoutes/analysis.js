@@ -158,20 +158,6 @@ router.post("/course", checkLogin, (req, res, next) => {
         sums[key] /= courses.length;
       });
 
-      freq.displayed.yes = (freq.displayed.yes / courses.length) * 100;
-      freq.test.yes = (freq.test.yes / courses.length) * 100;
-      freq.marks.yes = (freq.marks.yes / courses.length) * 100;
-      freq.curriculum.yes = (freq.curriculum.yes / courses.length) * 100;
-      freq.assessed.yes = (freq.assessed.yes / courses.length) * 100;
-      freq.classtest.yes = (freq.classtest.yes / courses.length) * 100;
-
-      freq.displayed.no = (freq.displayed.no / courses.length) * 100;
-      freq.test.no = (freq.test.no / courses.length) * 100;
-      freq.marks.no = (freq.marks.no / courses.length) * 100;
-      freq.curriculum.no = (freq.curriculum.no / courses.length) * 100;
-      freq.assessed.no = (freq.assessed.no / courses.length) * 100;
-      freq.classtest.no = (freq.classtest.no / courses.length) * 100;
-
       console.log(freq);
       res.render("adminViews/analysis/course", {
         avgs: sums,

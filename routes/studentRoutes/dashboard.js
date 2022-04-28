@@ -11,7 +11,7 @@ const Exit = require("../../models/feedbacks/exit");
 const Parent = require("../../models/feedbacks/parent");
 const Seminar = require("../../models/feedbacks/seminar");
 
-router.get("/", checkStudent, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const coursearr = await Course.find();
   const internshiparr = await Internship.find();
   const industrialarr = await Industrial.find();
@@ -142,7 +142,18 @@ router.get("/", checkStudent, async (req, res, next) => {
     if (avgsem > 2.5) positive += 1;
   });
 
-  res.render("studentViews/dashboard", { total: total, positive: positive });
+  res.render("studentViews/dashboard", {
+    total: total,
+    positive: positive,
+    negative: total - positive,
+    internshiptotal: internshiparr.length,
+    parents: parentarr.length,
+    staff: coursearr.length,
+    visits: industrialarr.length,
+    seminars: seminararr.length,
+    alumnis: alumniarr.length,
+    exits: exitarr.length,
+  });
 });
 
 module.exports = router;

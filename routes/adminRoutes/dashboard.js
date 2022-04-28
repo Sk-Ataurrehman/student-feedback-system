@@ -143,7 +143,18 @@ router.get("/", checkLogin, async (req, res, next) => {
   });
 
   if (req.session.loggedIn && req.session.email) {
-    res.render("adminViews/dashboard", { total: total, positive: positive });
+    res.render("adminViews/dashboard", {
+      total: total,
+      positive: positive,
+      negative: total - positive,
+      internshiptotal: internshiparr.length,
+      parents: parentarr.length,
+      staff: coursearr.length,
+      visits: industrialarr.length,
+      seminars: seminararr.length,
+      alumnis: alumniarr.length,
+      exits: exitarr.length,
+    });
   } else {
     res.render("error");
   }

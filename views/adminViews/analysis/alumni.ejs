@@ -131,7 +131,7 @@
             
               <tr>
                 <td>5</td>
-                <td>Institute is having adequate laboratories and equipments for practical experiences. Knowledge</td>
+                <td>Institute is having adequate laboratories and equipments for practical experiences.</td>
                 <td><%=avgsal.equipments%></td>
               </tr>
 
@@ -183,65 +183,53 @@
       </div>
     <section class="section">
       <div class="row">
-      
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Alumni Feedbacks </h5>
+              <h5 class="card-title">Alumni Feedbacks</h5>
 
               <!-- Bar Chart -->
-              <div><canvas id="barChart" style="max-height: 400px;"></canvas></div>
+              <div id="barChart"></div>
+
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
-                    type: 'bar',
-                    data: {
-                      labels: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12'],
-                      datasets: [{
-                        label:'Average Marks',
-                        data: ['<%=avgsal.proud%>', '<%=avgsal.activities%>', '<%=avgsal.contribute%>', '<%=avgsal.grievance%>', '<%=avgsal.equipments%>', '<%=avgsal.relevant%>', '<%=avgsal.technical%>','<%=avgsal.placement%>', '<%=avgsal.association%>', '<%=avgsal.updates%>', '<%=avgsal.rate%>', '<%=avgsal.hospitality%>'],
-                        backgroundColor: [
-                          'rgba(0, 51, 102, 0.5)',
-                          'rgba(51, 102, 153, 0.5)',
-                          'rgba(0, 102, 102, 0.5)',
-                          'rgba(102, 153, 153, 0.5)',
-                          'rgba(51, 153, 102, 0.5)',
-                          'rgba(51, 153, 51, 0.5)',
-                          'rgba(0, 102, 0, 0.5)',
-                          'rgba(0, 51, 0, 0.5)',
-                          'rgba(0, 0, 102, 0.5)',
-                          'rgba(102, 0, 102, 0.5)',
-                          'rgba(102, 0, 51, 0.5)',
-                          'rgba(153, 0, 51, 0.5)',
-                        ],
-                        borderColor: [
-                          'rgb(0, 51, 102)',
-                          'rgb(51, 102, 153)',
-                          'rgb(0, 102, 102)',
-                          'rgb(102, 153, 153)',
-                          'rgb(51, 153, 102)',
-                          'rgb(51, 153, 51)',
-                          'rgb(0, 102, 0)',
-                          'rgb(0, 51, 0)',
-                          'rgb(0, 0, 102)',
-                          'rgb(102, 0, 102)',
-                          'rgb(102, 0, 51)',
-                          'rgb((153, 0, 51)',
-                        ],
-                        borderWidth: 1
-                      }]
+                  new ApexCharts(document.querySelector("#barChart"), {
+                    series: [{
+                      name: 'Average Marks',
+                      data: ['<%=avgsal.proud%>', '<%=avgsal.activities%>', '<%=avgsal.contribute%>', '<%=avgsal.grievance%>', '<%=avgsal.equipments%>', '<%=avgsal.relevant%>', '<%=avgsal.technical%>','<%=avgsal.placement%>', '<%=avgsal.association%>', '<%=avgsal.updates%>', '<%=avgsal.rate%>', '<%=avgsal.hospitality%>']
+                    }],
+                    chart: {
+                      type: 'bar',
+                      height: 600
                     },
-                    options: {
-                      scales: {
-                        y: {
-                          beginAtZero: true
-                        }
+                    plotOptions: {
+                      bar: {
+                        borderRadius: 4,
+                        horizontal: true,
                       }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    xaxis: {
+                      categories: ['Do you feel proud to be associated with Saboo Siddik as an Alumni?', 
+                        'Institute organizes various kinds of activities for overall development of students & staff members.',
+                        'Are you willing to contribute in the development of the institute?',
+                        'Institute handles student grievance properly.',
+                        'Institute is having adequate laboratories and equipments for practical experiences.',
+                        'Is education imparted as Saboo Siddik is useful and relevant at your present job.',
+                        'Did you obtain sufficient technical knowledge at Saboo Siddik?',
+                        'Has the T & P Cell provided ample On-Campus and Off-Campus placement opportunities?',
+                        'Do you like to join the Institute Alumni Association?',
+                        'Do you receive regular updates from the Institute through Mails/Calls/SMS etc.?',
+                        'How will you rate the alumni meet program?',
+                        'How will you rate our hospitality?'
+                      ],
                     }
-                  });
+                  }).render();
                 });
               </script>
-              <!-- End Bar CHart -->
+              <!-- End Bar Chart -->
 
             </div>
           </div>
@@ -258,7 +246,6 @@
             <!-- Pie Chart -->
             <canvas id="pieChart" style="max-height: 400px;"></canvas>
             <script>
-              alert('<%=freq2%>')
               document.addEventListener("DOMContentLoaded", () => {
                 new Chart(document.querySelector('#pieChart'), {
                   type: 'pie',

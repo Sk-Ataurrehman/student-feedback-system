@@ -127,25 +127,25 @@
             
               <tr>
                   <td>1</td>
-                  <td>The outcomes of the Industrial visits were clearly defined</td>
+                  <td>The outcomes of the Expert Lecture / Seminar / Workshop were clearly defined</td>
                   <td><%=avgssem.outcomes%></td>
               </tr>
 
               <tr>
                 <td>2</td>
-                <td>The areas covered were relevant to the course content</td>
+                <td>The content covered were relevant to the course content</td>
                 <td><%=avgssem.content%></td>
               </tr>
 
               <tr>
                 <td>3</td>
-                <td>The visit has enhanced the understanding of the subject knowledge</td>
+                <td>The session has enhanced the understanding of the subject knowledge</td>
                 <td><%=avgssem.session%></td>
               </tr>
               
               <tr>
                 <td>4</td>
-                <td>The duration and the scheduling of the visit was satisfactory</td>
+                <td>The duration and the scheduling of the session was satisfactory</td>
                 <td><%=avgssem.duration%></td>                         
               </tr>
           </tbody>
@@ -154,49 +154,46 @@
       </div>
     <section class="section">
       <div class="row">
-      
+        
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Seminar / Workshop / Expert Lecture Feedbacks </h5>
+              <h5 class="card-title">Seminar / Workshops /  Expert Lecture Feedbacks</h5>
 
               <!-- Bar Chart -->
-              <div><canvas id="barChart" style="max-height: 400px;"></canvas></div>
+              <div id="barChart"></div>
+
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
-                    type: 'bar',
-                    data: {
-                      labels: ['1', '2', '3', '4'],
-                      datasets: [{
-                        label:'Average Marks',
-                        data: ['<%=avgssem.outcomes%>', '<%=avgssem.content%>', '<%=avgssem.session%>', '<%=avgssem.duration%>'],
-                        backgroundColor: [
-                          'rgba(51, 153, 51, 0.5)',
-                          'rgba(0, 102, 0, 0.5)',
-                          'rgba(0, 51, 0, 0.5)',
-                          'rgba(0, 0, 102, 0.5)',
-                        ],
-                        borderColor: [
-                        'rgba(51, 153, 51)',
-                          'rgba(0, 102, 0)',
-                          'rgba(0, 51, 0)',
-                          'rgba(0, 0, 102)',
-                        ],
-                        borderWidth: 1
-                      }]
+                  new ApexCharts(document.querySelector("#barChart"), {
+                    series: [{
+                      name: 'Average Marks',
+                      data: ['<%=avgssem.outcomes%>', '<%=avgssem.content%>', '<%=avgssem.session%>', '<%=avgssem.duration%>']
+                    }],
+                    chart: {
+                      type: 'bar',
+                      height: 300
                     },
-                    options: {
-                      scales: {
-                        y: {
-                          beginAtZero: true
-                        }
+                    plotOptions: {
+                      bar: {
+                        borderRadius: 4,
+                        horizontal: true,
                       }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    xaxis: {
+                      categories: ['The Outcomes of the Expert Lecture / Seminar / Workshops were clearly defined', 
+                        'The content covered were relevant to the course content',
+                        'The session has enhanced the understanding of the subject knowledge',
+                        'The duration and the scheduling of the session was satisfactory',
+                      ],
                     }
-                  });
+                  }).render();
                 });
               </script>
-              <!-- End Bar CHart -->
+              <!-- End Bar Chart -->
 
             </div>
           </div>

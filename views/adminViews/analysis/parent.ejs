@@ -179,61 +179,48 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Parents Feedbacks </h5>
+              
+              <div id="barChart"></div>
 
-              <!-- Bar Chart -->
-              <div><canvas id="barChart" style="max-height: 400px;"></canvas></div>
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
-                    type: 'bar',
-                    data: {
-                      labels: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12'],
-                      datasets: [{
-                        label:'Average Marks',
-                        data: ['<%=avgspa.admission%>', '<%=avgspa.infrastructure%>', '<%=avgspa.library%>', '<%=avgspa.canteen%>', '<%=avgspa.sports%>', '<%=avgspa.counseling%>', '<%=avgspa.ict%>','<%=avgspa.discipline%>', '<%=avgspa.improvements%>', '<%=avgspa.adopted%>', '<%=avgspa.evaluation%>', '<%=avgspa.placements%>'],
-                        backgroundColor: [
-                          'rgba(0, 51, 102, 0.5)',
-                          'rgba(51, 102, 153, 0.5)',
-                          'rgba(0, 102, 102, 0.5)',
-                          'rgba(102, 153, 153, 0.5)',
-                          'rgba(51, 153, 102, 0.5)',
-                          'rgba(51, 153, 51, 0.5)',
-                          'rgba(0, 102, 0, 0.5)',
-                          'rgba(0, 51, 0, 0.5)',
-                          'rgba(0, 0, 102, 0.5)',
-                          'rgba(102, 0, 102, 0.5)',
-                          'rgba(102, 0, 51, 0.5)',
-                          'rgba(153, 0, 51, 0.5)',
-                        ],
-                        borderColor: [
-                          'rgb(0, 51, 102)',
-                          'rgb(51, 102, 153)',
-                          'rgb(0, 102, 102)',
-                          'rgb(102, 153, 153)',
-                          'rgb(51, 153, 102)',
-                          'rgb(51, 153, 51)',
-                          'rgb(0, 102, 0)',
-                          'rgb(0, 51, 0)',
-                          'rgb(0, 0, 102)',
-                          'rgb(102, 0, 102)',
-                          'rgb(102, 0, 51)',
-                          'rgb((153, 0, 51)',
-                        ],
-                        borderWidth: 1
-                      }]
+                  new ApexCharts(document.querySelector("#barChart"), {
+                    series: [{
+                      name: 'Average Marks',
+                      data: ['<%=avgspa.admission%>', '<%=avgspa.infrastructure%>', '<%=avgspa.library%>', '<%=avgspa.canteen%>', '<%=avgspa.sports%>', '<%=avgspa.counseling%>', '<%=avgspa.ict%>','<%=avgspa.discipline%>', '<%=avgspa.improvements%>', '<%=avgspa.adopted%>', '<%=avgspa.evaluation%>', '<%=avgspa.placements%>']
+                    }],
+                    chart: {
+                      type: 'bar',
+                      height: 600
                     },
-                    options: {
-                      scales: {
-                        y: {
-                          beginAtZero: true
-                        }
+                    plotOptions: {
+                      bar: {
+                        borderRadius: 4,
+                        horizontal: true,
                       }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    xaxis: {
+                      categories: ['Admission Procedure',
+                      'Infrastructure and Lab facility',
+                      'Library',
+                      'Canteen and other facility',
+                      'Sports and Extra Curricular activities',
+                      'Student\'s counseling and Mentoring',
+                      'Use of Information and Communication Tecnhonology in the college',
+                      'Academic Discipline (i.e timely conduct of lectures, practical and related activiteis) observed by you',
+                      'Improvements in soft skills, knowledge, ethics, morality, oberved by you in your ward while studying in college',
+                      'Examination system adopted by the college',
+                      'Evaluation and Feedback mechanism',
+                      'Placements'
+                      ],
                     }
-                  });
+                  }).render();
                 });
               </script>
-              <!-- End Bar CHart -->
-
+              
             </div>
           </div>
         </div>

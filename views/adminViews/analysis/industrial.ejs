@@ -151,49 +151,47 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Industrial Visit Feedbacks </h5>
+              <h5 class="card-title">Industrial Visit Feedbacks</h5>
 
               <!-- Bar Chart -->
-              <div><canvas id="barChart" style="max-height: 400px;"></canvas></div>
+              <div id="barChart"></div>
+
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
-                    type: 'bar',
-                    data: {
-                      labels: ['1', '2', '3', '4'],
-                      datasets: [{
-                        label:'Average Marks',
-                        data: ['<%=avgsind.outcomes%>', '<%=avgsind.content%>', '<%=avgsind.knowledge%>', '<%=avgsind.duration%>'],
-                        backgroundColor: [
-                          'rgba(51, 153, 51, 0.5)',
-                          'rgba(0, 102, 0, 0.5)',
-                          'rgba(0, 51, 0, 0.5)',
-                          'rgba(0, 0, 102, 0.5)',
-                        ],
-                        borderColor: [
-                        'rgba(51, 153, 51)',
-                          'rgba(0, 102, 0)',
-                          'rgba(0, 51, 0)',
-                          'rgba(0, 0, 102)',
-                        ],
-                        borderWidth: 1
-                      }]
+                  new ApexCharts(document.querySelector("#barChart"), {
+                    series: [{
+                      name: 'Average Marks',
+                      data: ['<%=avgsind.outcomes%>', '<%=avgsind.content%>', '<%=avgsind.knowledge%>', '<%=avgsind.duration%>']
+                    }],
+                    chart: {
+                      type: 'bar',
+                      height: 300
                     },
-                    options: {
-                      scales: {
-                        y: {
-                          beginAtZero: true
-                        }
+                    plotOptions: {
+                      bar: {
+                        borderRadius: 4,
+                        horizontal: true,
                       }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    xaxis: {
+                      categories: ['The Outcomes of the Industrial Visits were clearly defined', 
+                        'The areas covered were relevant to the course content',
+                        'The visit has enhanced the understanding of the subject knowledge',
+                        'The duration and the scheduling of the visit was satisfactory',
+                      ],
                     }
-                  });
+                  }).render();
                 });
               </script>
-              <!-- End Bar CHart -->
+              <!-- End Bar Chart -->
 
             </div>
           </div>
         </div>
+
 
       </div>
     </section>

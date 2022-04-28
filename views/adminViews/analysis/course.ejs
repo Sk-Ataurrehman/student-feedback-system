@@ -207,292 +207,103 @@
       </div>
     <section class="section">
       <div class="row">
-      
+        
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Course Feedbacks </h5>
+              <h5 class="card-title">Course Feedbacks</h5>
 
               <!-- Bar Chart -->
-              <div><canvas id="barChart" style="max-height: 400px;"></canvas></div>
+              <div id="barChart"></div>
+
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
-                    type: 'bar',
-                    data: {
-                      labels: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14'],
-                      datasets: [{
-                        label:'Average Marks',
-                        data: ['<%=avgs.punc%>', '<%=avgs.accessibility%>', '<%=avgs.sincerity%>', '<%=avgs.behaviour%>', '<%=avgs.knowledge%>', '<%=avgs.engagement%>', '<%=avgs.presentation%>','<%=avgs.interaction%>', '<%=avgs.aids%>', '<%=avgs.completion%>', '<%=avgs.practices%>', '<%=avgs.evolution%>', '<%=avgs.ability%>', '<%=avgs.overall%>'],
-                        backgroundColor: [
-                          'rgba(0, 51, 102, 0.5)',
-                          'rgba(51, 102, 153, 0.5)',
-                          'rgba(0, 102, 102, 0.5)',
-                          'rgba(102, 153, 153, 0.5)',
-                          'rgba(51, 153, 102, 0.5)',
-                          'rgba(51, 153, 51, 0.5)',
-                          'rgba(0, 102, 0, 0.5)',
-                          'rgba(0, 51, 0, 0.5)',
-                          'rgba(0, 0, 102, 0.5)',
-                          'rgba(102, 0, 102, 0.5)',
-                          'rgba(102, 0, 51, 0.5)',
-                          'rgba(153, 0, 51, 0.5)',
-                          'rgba(153, 51, 0, 0.5)',
-                          'rgba(204, 102, 0, 0.5)'
-                        ],
-                        borderColor: [
-                          'rgb(0, 51, 102)',
-                          'rgb(51, 102, 153)',
-                          'rgb(0, 102, 102)',
-                          'rgb(102, 153, 153)',
-                          'rgb(51, 153, 102)',
-                          'rgb(51, 153, 51)',
-                          'rgb(0, 102, 0)',
-                          'rgb(0, 51, 0)',
-                          'rgb(0, 0, 102)',
-                          'rgb(102, 0, 102)',
-                          'rgb(102, 0, 51)',
-                          'rgb((153, 0, 51)',
-                          'rgb(153, 51, 0)',
-                          'rgb(204, 102, 0)'
-                        ],
-                        borderWidth: 1
-                      }]
+                  new ApexCharts(document.querySelector("#barChart"), {
+                    series: [{
+                      name: 'Average Marks',
+                      data: ['<%=avgs.punc%>', '<%=avgs.accessibility%>', '<%=avgs.sincerity%>', '<%=avgs.behaviour%>', '<%=avgs.knowledge%>', '<%=avgs.engagement%>', '<%=avgs.presentation%>', '<%=avgs.interaction%>', '<%=avgs.aids%>', '<%=avgs.completion%>','<%=avgs.practices%>', '<%=avgs.evolution%>', '<%=avgs.ability%>', '<%=avgs.overall%>']
+                    }],
+                    chart: {
+                      type: 'bar',
+                      height: 600
                     },
-                    options: {
-                      scales: {
-                        y: {
-                          beginAtZero: true
-                        }
+                    plotOptions: {
+                      bar: {
+                        borderRadius: 4,
+                        horizontal: true,
                       }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    xaxis: {
+                      categories: ['Punctuality', 'Accessibility', 'Sincerity', 'Behaviour', 'Subject Knowledge', 
+                      'Full Hour Engagement of Lecture and Practical', 'Presentation Skills','Interaction with Students',
+                      'Use of teaching aids','Completion of Syllabus','Practices and Revision','Test and Evolution',
+                      'Ability to maintain discipline','Overall Performance'
+                      ],
                     }
-                  });
+                  }).render();
                 });
               </script>
-              <!-- End Bar CHart -->
+              <!-- End Bar Chart -->
 
+              <!-- Column Chart -->
+        <div id="columnChart"></div>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            new ApexCharts(document.querySelector("#columnChart"), {
+              series: [{
+                name: 'Yes',
+                data: ['<%=freq.displayed.yes%>', '<%=freq.test.yes%>', '<%=freq.marks.yes%>', '<%=freq.curriculum.yes%>', '<%=freq.assessed.yes%>', '<%=freq.classtest.yes%>']
+              }, {
+                name: 'No',
+                data: ['<%=freq.displayed.no%>', '<%=freq.test.no%>', '<%=freq.marks.no%>', '<%=freq.curriculum.no%>', '<%=freq.assessed.no%>', '<%=freq.classtest.no%>']
+              }],
+              chart: {
+                type: 'bar',
+                height: 600
+              },
+              plotOptions: {
+                bar: {
+                  horizontal: true,
+                  columnWidth: '55%',
+                  endingShape: 'rounded'
+                },
+              },
+              dataLabels: {
+                enabled: false,
+              },
+              stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+              },
+              legend:{
+                fontSize: '15pt'
+              },
+              xaxis: {
+                categories: ['Whether the academic Calendar of MBSTE was displayed before the beginning of the term?',
+                              'Whether the progressive skill test/class tests are conduted as per MSBTE Calendar?',
+                              'The test marks are displayed on the notice board within 15 days from the date of the test?',
+                              'Was 100% Curriculum covered during the last term?',
+                              'Are you being continously assessed for Laboratory work?',
+                              'Do you know your class test marks at the end of the term?'],
+                
+              },
+              fill: {
+                opacity: 1,
+                colors: ['#6666ff','#ff944d']
+              },
+            }).render();
+          });
+        </script>
             </div>
           </div>
-        </div>
-
+        </div>        
       </div>
 
-      <!-- Pie Charts row 1 -->
-      <div class="row g-2">
-        <!-- Chart 1  -->
-        <div class="col-lg-4" style="padding: 2%;">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title">Whether the academic Calendar of MBSTE was displayed before the beginning of the term?</h6>
-
-              <!-- Pie Chart -->
-              <canvas id="displayed" style="max-height: 400px;"></canvas>
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#displayed'), {
-                    type: 'pie',
-                    data: {
-                      labels: [
-                        'Yes (%)',
-                        'No (%)',
-                      ],
-                      datasets: [{
-                        label: '',
-                        data: ['<%=freq.displayed.yes%>','<%=freq.displayed.no%>'],
-                        backgroundColor: [
-                          'rgb(255, 99, 132)',
-                          'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4
-                      }]
-                    }
-                  });
-                });
-              </script>
-              <!-- End Pie CHart -->
-
-            </div>
-          </div>
-        </div>
-        
-        <!-- Pie chart 2 -->
-        <div class="col-lg-4" style="padding: 2%;">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title">Whether the progressive skill test/class tests are conduted as per MSBTE Calendar?</h6>
-
-              <!-- Pie Chart -->
-              <canvas id="tests" style="max-height: 400px;"></canvas>
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#tests'), {
-                    type: 'pie',
-                    data: {
-                      labels: [
-                        'Yes (%)',
-                        'No (%)',
-                      ],
-                      datasets: [{
-                        label: '',
-                        data: ['<%=freq.test.yes%>','<%=freq.test.no%>'],
-                        backgroundColor: [
-                          'rgb(255, 99, 132)',
-                          'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4
-                      }]
-                    }
-                  });
-                });
-              </script>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Pie chart 3 -->
-        <div class="col-lg-4" style="padding: 2%;">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title">The test marks are displayed on the notice board within 15 days from the date of the test?</h6>
-
-              <canvas id="marks" style="max-height: 400px;"></canvas>
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#marks'), {
-                    type: 'pie',
-                    data: {
-                      labels: [
-                        'Yes (%)',
-                        'No (%)',
-                      ],
-                      datasets: [{
-                        label: '',
-                        data: ['<%=freq.marks.yes%>','<%=freq.marks.no%>'],
-                        backgroundColor: [
-                          'rgb(255, 99, 132)',
-                          'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4
-                      }]
-                    }
-                  });
-                });
-              </script>
-
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-
-      <!-- Pie charts  row 2 -->
-      <div class="row g-2">
-        <!-- Chart 4  -->
-        <div class="col-lg-4" style="padding: 2%;">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title">Was 100% Curriculum covered during the last term?</h6>
-
-              <canvas id="curriculum" style="max-height: 400px;"></canvas>
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#curriculum'), {
-                    type: 'pie',
-                    data: {
-                      labels: [
-                        'Yes (%)',
-                        'No (%)',
-                      ],
-                      datasets: [{
-                        label: '',
-                        data: ['<%=freq.curriculum.yes%>','<%=freq.curriculum.no%>'],
-                        backgroundColor: [
-                          'rgb(255, 99, 132)',
-                          'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4
-                      }]
-                    }
-                  });
-                });
-              </script>
-              <!-- End Pie CHart -->
-
-            </div>
-          </div>
-        </div>
-        
-        <!-- chart 5 -->
-        <div class="col-lg-4" style="padding: 2%;">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title">Are you being continously assessed for Laboratory work?</h6>
-
-              <!-- Pie Chart -->
-              <canvas id="assessed" style="max-height: 400px;"></canvas>
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#assessed'), {
-                    type: 'pie',
-                    data: {
-                      labels: [
-                        'Yes (%)',
-                        'No (%)',
-                      ],
-                      datasets: [{
-                        label: '',
-                        data: ['<%=freq.assessed.yes%>','<%=freq.assessed.no%>'],
-                        backgroundColor: [
-                          'rgb(255, 99, 132)',
-                          'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4
-                      }]
-                    }
-                  });
-                });
-              </script>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Pie chart 3 -->
-        <div class="col-lg-4" style="padding: 2%;">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title">Do you know your class test marks at the end of the term?</h6>
-
-              <canvas id="classtest" style="max-height: 400px;"></canvas>
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#classtest'), {
-                    type: 'pie',
-                    data: {
-                      labels: [
-                        'Yes (%)',
-                        'No (%)',
-                      ],
-                      datasets: [{
-                        label: '',
-                        data: ['<%=freq.classtest.yes%>','<%=freq.classtest.no%>'],
-                        backgroundColor: [
-                          'rgb(255, 99, 132)',
-                          'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4
-                      }]
-                    }
-                  });
-                });
-              </script>
-
-            </div>
-          </div>
-        </div>
-
-
-      </div>
 
     </section>
     <%}%>
