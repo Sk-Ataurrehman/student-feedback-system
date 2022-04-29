@@ -11,13 +11,93 @@ const Parent = require("../../models/feedbacks/parent");
 
 const checkLogin = require("../../middlewares/check-login");
 
-router.get("/course", checkLogin, (req, res, next) => {
+router.get("/course", checkLogin, async (req, res, next) => {
   var date = new Date().getFullYear();
   var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
   var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
+
+  var staffs = await Course.find().distinct("staff").exec();
+  console.log(staffs);
+  var compare = {};
+
+  for (const element of staffs) {
+    var avgsComp = await Course.find({ staff: element }).exec();
+
+    var sumsComp = {
+      punc: 0,
+      accessibility: 0,
+      sincerity: 0,
+      behaviour: 0,
+      knowledge: 0,
+      engagement: 0,
+      presentation: 0,
+      interaction: 0,
+      aids: 0,
+      completion: 0,
+      practices: 0,
+      evolution: 0,
+      ability: 0,
+      overall: 0,
+    };
+
+    avgsComp.forEach((el2) => {
+      sumsComp.accessibility += parseInt(el2.accessibility);
+      sumsComp.punc += parseInt(el2.punctuality);
+      sumsComp.sincerity += parseInt(el2.sincerity);
+      sumsComp.behaviour += parseInt(el2.behaviour);
+      sumsComp.knowledge += parseInt(el2.knowledge);
+      sumsComp.engagement += parseInt(el2.engagement);
+      sumsComp.presentation += parseInt(el2.presentation);
+      sumsComp.interaction += parseInt(el2.interaction);
+      sumsComp.aids += parseInt(el2.aids);
+      sumsComp.completion += parseInt(el2.completion);
+      sumsComp.practices += parseInt(el2.practices);
+      sumsComp.evolution += parseInt(el2.evolution);
+      sumsComp.ability += parseInt(el2.ability);
+      sumsComp.overall += parseInt(el2.overall);
+    });
+
+    sumsComp.punc = sumsComp.punc / avgsComp.length;
+    sumsComp.accessibility = sumsComp.accessibility / avgsComp.length;
+    sumsComp.sincerity = sumsComp.sincerity / avgsComp.length;
+    sumsComp.behaviour = sumsComp.behaviour / avgsComp.length;
+    sumsComp.knowledge = sumsComp.knowledge / avgsComp.length;
+    sumsComp.engagement = sumsComp.engagement / avgsComp.length;
+    sumsComp.presentation = sumsComp.presentation / avgsComp.length;
+    sumsComp.interaction = sumsComp.interaction / avgsComp.length;
+    sumsComp.aids = sumsComp.aids / avgsComp.length;
+    sumsComp.completion = sumsComp.completion / avgsComp.length;
+    sumsComp.practices = sumsComp.practices / avgsComp.length;
+    sumsComp.evolution = sumsComp.evolution / avgsComp.length;
+    sumsComp.ability = sumsComp.ability / avgsComp.length;
+    sumsComp.overall = sumsComp.overall / avgsComp.length;
+
+    var avgcomp =
+      sumsComp.punc +
+      sumsComp.accessibility +
+      sumsComp.sincerity +
+      sumsComp.behaviour +
+      sumsComp.knowledge +
+      sumsComp.engagement +
+      sumsComp.presentation +
+      sumsComp.interaction +
+      sumsComp.aids +
+      sumsComp.completion +
+      sumsComp.practices +
+      sumsComp.evolution +
+      sumsComp.ability +
+      sumsComp.overall;
+    compare[element] = parseFloat(avgcomp / 14).toFixed(2);
+  }
+
+  compareStats = Object.values(compare);
+  console.log(compareStats);
+
   res.render("adminViews/analysis/course", {
     avgs: {},
     noents: false,
+    staffs: staffs,
+    compareStats: compareStats,
     dates: [date1, date2],
   });
 });
@@ -74,101 +154,177 @@ router.get("/parent", checkLogin, (req, res, next) => {
   });
 });
 
-router.post("/course", checkLogin, (req, res, next) => {
+router.post("/course", async (req, res, next) => {
   var date = new Date().getFullYear();
   var date2 = date.toString() + "-" + (date + 1).toString().substring(2, 4);
   var date1 = (date - 1).toString() + "-" + date.toString().substring(2, 4);
 
-  Course.find({
+  var courses = await Course.find({
     acadyear: req.body.acadyear,
     department: req.body.department,
     staff: req.body.staff,
-  })
-    .exec()
-    .then((courses) => {
-      if (courses.length < 1) {
-        return res.render("adminViews/analysis/course", {
-          avgs: {},
-          noents: true,
-          dates: [date1, date2],
-        });
-      }
-      var sums = {
-        punc: 0,
-        accessibility: 0,
-        sincerity: 0,
-        behaviour: 0,
-        knowledge: 0,
-        engagement: 0,
-        presentation: 0,
-        interaction: 0,
-        aids: 0,
-        completion: 0,
-        practices: 0,
-        evolution: 0,
-        ability: 0,
-        overall: 0,
-      };
-      var freq = {
-        displayed: { yes: 0, no: 0 }, //form2
-        test: { yes: 0, no: 0 },
-        marks: { yes: 0, no: 0 },
-        curriculum: { yes: 0, no: 0 },
-        assessed: { yes: 0, no: 0 },
-        classtest: { yes: 0, no: 0 },
-      };
+  }).exec();
 
-      console.log(courses.length);
-      courses.forEach((element) => {
-        sums.punc += parseInt(element.punctuality);
-        sums.accessibility += parseInt(element.accessibility);
-        sums.sincerity += parseInt(element.sincerity);
-        sums.behaviour += parseInt(element.behaviour);
-        sums.knowledge += parseInt(element.knowledge);
-        sums.engagement += parseInt(element.engagement);
-        sums.presentation += parseInt(element.presentation);
-        sums.interaction += parseInt(element.interaction);
-        sums.aids += parseInt(element.aids);
-        sums.completion += parseInt(element.completion);
-        sums.practices += parseInt(element.practices);
-        sums.evolution += parseInt(element.evolution);
-        sums.ability += parseInt(element.ability);
-        sums.overall += parseInt(element.overall);
+  var staffs = await Course.find().distinct("staff").exec();
+  console.log(staffs);
+  var compare = {};
 
-        if (element.displayed == "Yes") freq.displayed.yes += 1;
-        else if (element.displayed == "No") freq.displayed.no += 1;
+  for (const element of staffs) {
+    var avgsComp = await Course.find({ staff: element }).exec();
 
-        if (element.test == "Yes") freq.test.yes += 1;
-        else if (element.test == "No") freq.test.no += 1;
+    var sumsComp = {
+      punc: 0,
+      accessibility: 0,
+      sincerity: 0,
+      behaviour: 0,
+      knowledge: 0,
+      engagement: 0,
+      presentation: 0,
+      interaction: 0,
+      aids: 0,
+      completion: 0,
+      practices: 0,
+      evolution: 0,
+      ability: 0,
+      overall: 0,
+    };
 
-        if (element.marks == "Yes") freq.marks.yes += 1;
-        else if (element.marks == "No") freq.marks.no += 1;
+    avgsComp.forEach((el2) => {
+      sumsComp.accessibility += parseInt(el2.accessibility);
+      sumsComp.punc += parseInt(el2.punctuality);
+      sumsComp.sincerity += parseInt(el2.sincerity);
+      sumsComp.behaviour += parseInt(el2.behaviour);
+      sumsComp.knowledge += parseInt(el2.knowledge);
+      sumsComp.engagement += parseInt(el2.engagement);
+      sumsComp.presentation += parseInt(el2.presentation);
+      sumsComp.interaction += parseInt(el2.interaction);
+      sumsComp.aids += parseInt(el2.aids);
+      sumsComp.completion += parseInt(el2.completion);
+      sumsComp.practices += parseInt(el2.practices);
+      sumsComp.evolution += parseInt(el2.evolution);
+      sumsComp.ability += parseInt(el2.ability);
+      sumsComp.overall += parseInt(el2.overall);
+    });
 
-        if (element.curriculum == "Yes") freq.curriculum.yes += 1;
-        else if (element.curriculum == "No") freq.curriculum.no += 1;
+    sumsComp.punc = sumsComp.punc / avgsComp.length;
+    sumsComp.accessibility = sumsComp.accessibility / avgsComp.length;
+    sumsComp.sincerity = sumsComp.sincerity / avgsComp.length;
+    sumsComp.behaviour = sumsComp.behaviour / avgsComp.length;
+    sumsComp.knowledge = sumsComp.knowledge / avgsComp.length;
+    sumsComp.engagement = sumsComp.engagement / avgsComp.length;
+    sumsComp.presentation = sumsComp.presentation / avgsComp.length;
+    sumsComp.interaction = sumsComp.interaction / avgsComp.length;
+    sumsComp.aids = sumsComp.aids / avgsComp.length;
+    sumsComp.completion = sumsComp.completion / avgsComp.length;
+    sumsComp.practices = sumsComp.practices / avgsComp.length;
+    sumsComp.evolution = sumsComp.evolution / avgsComp.length;
+    sumsComp.ability = sumsComp.ability / avgsComp.length;
+    sumsComp.overall = sumsComp.overall / avgsComp.length;
 
-        if (element.assessed == "Yes") freq.assessed.yes += 1;
-        else if (element.assessed == "No") freq.assessed.no += 1;
+    var avgcomp =
+      sumsComp.punc +
+      sumsComp.accessibility +
+      sumsComp.sincerity +
+      sumsComp.behaviour +
+      sumsComp.knowledge +
+      sumsComp.engagement +
+      sumsComp.presentation +
+      sumsComp.interaction +
+      sumsComp.aids +
+      sumsComp.completion +
+      sumsComp.practices +
+      sumsComp.evolution +
+      sumsComp.ability +
+      sumsComp.overall;
+    compare[element] = parseFloat(avgcomp / 14).toFixed(2);
+  }
 
-        if (element.classtest == "Yes") freq.classtest.yes += 1;
-        else if (element.classtest == "No") freq.classtest.no += 1;
-      });
+  compareStats = Object.values(compare);
+  console.log(compareStats);
 
-      Object.keys(sums).map(function (key, index) {
-        sums[key] /= courses.length;
-      });
-
-      console.log(freq);
-      res.render("adminViews/analysis/course", {
-        avgs: sums,
-        noents: false,
-        freq: freq,
+  try {
+    if (courses.length < 1) {
+      return res.render("adminViews/analysis/course", {
+        avgs: {},
+        noents: true,
         dates: [date1, date2],
       });
-    })
-    .catch((err) => {
-      res.render("error", { error: err, message: err.message });
+    }
+    var sums = {
+      punc: 0,
+      accessibility: 0,
+      sincerity: 0,
+      behaviour: 0,
+      knowledge: 0,
+      engagement: 0,
+      presentation: 0,
+      interaction: 0,
+      aids: 0,
+      completion: 0,
+      practices: 0,
+      evolution: 0,
+      ability: 0,
+      overall: 0,
+    };
+    var freq = {
+      displayed: { yes: 0, no: 0 }, //form2
+      test: { yes: 0, no: 0 },
+      marks: { yes: 0, no: 0 },
+      curriculum: { yes: 0, no: 0 },
+      assessed: { yes: 0, no: 0 },
+      classtest: { yes: 0, no: 0 },
+    };
+
+    courses.forEach((element) => {
+      sums.punc += parseInt(element.punctuality);
+      sums.accessibility += parseInt(element.accessibility);
+      sums.sincerity += parseInt(element.sincerity);
+      sums.behaviour += parseInt(element.behaviour);
+      sums.knowledge += parseInt(element.knowledge);
+      sums.engagement += parseInt(element.engagement);
+      sums.presentation += parseInt(element.presentation);
+      sums.interaction += parseInt(element.interaction);
+      sums.aids += parseInt(element.aids);
+      sums.completion += parseInt(element.completion);
+      sums.practices += parseInt(element.practices);
+      sums.evolution += parseInt(element.evolution);
+      sums.ability += parseInt(element.ability);
+      sums.overall += parseInt(element.overall);
+
+      if (element.displayed == "Yes") freq.displayed.yes += 1;
+      else if (element.displayed == "No") freq.displayed.no += 1;
+
+      if (element.test == "Yes") freq.test.yes += 1;
+      else if (element.test == "No") freq.test.no += 1;
+
+      if (element.marks == "Yes") freq.marks.yes += 1;
+      else if (element.marks == "No") freq.marks.no += 1;
+
+      if (element.curriculum == "Yes") freq.curriculum.yes += 1;
+      else if (element.curriculum == "No") freq.curriculum.no += 1;
+
+      if (element.assessed == "Yes") freq.assessed.yes += 1;
+      else if (element.assessed == "No") freq.assessed.no += 1;
+
+      if (element.classtest == "Yes") freq.classtest.yes += 1;
+      else if (element.classtest == "No") freq.classtest.no += 1;
     });
+
+    Object.keys(sums).map(function (key, index) {
+      sums[key] = parseFloat(sums[key] / courses.length).toFixed(2);
+    });
+
+    res.render("adminViews/analysis/course", {
+      avgs: sums,
+      noents: false,
+      freq: freq,
+      dates: [date1, date2],
+      staffs: staffs,
+      compareStats: compareStats,
+    });
+  } catch (err) {
+    res.render("error", { error: err, message: err.message });
+  }
 });
 
 router.post("/internship", checkLogin, (req, res, next) => {

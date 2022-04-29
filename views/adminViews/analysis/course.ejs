@@ -304,7 +304,8 @@
 
               
         </script>
-            </div>
+                  
+                  
           </div>
         </div>        
       </div>
@@ -312,6 +313,55 @@
 
     </section>
     <%}%>
+
+    <div class="card">
+        <div class="card-body">
+                  <h5 class="card-title">Feedback Comparison Among the Staffs</h5>
+
+                  <div id="comChart1"></div>
+                  
+                  <script>
+
+                  var resultStaff = [];
+                  var resultComp = [];
+
+                    '<% for (var i=0, len=staffs.length; i<len; i++) { %>'
+                      resultStaff.push('<%- staffs[i] %>');
+                    '<% } %>'
+
+                    '<% for (var i=0, len=compareStats.length; i<len; i++) { %>'
+                      resultComp.push('<%- compareStats[i] %>');
+                    '<% } %>'
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#comChart1"), {
+                        series: [{
+                          name: 'Average Marks',
+                          data: resultComp
+                        }],
+                        chart: {
+                          type: 'bar',
+                          height: 600
+                        },
+                        plotOptions: {
+                          bar: {
+                            borderRadius: 4,
+                            horizontal: true,
+                          }
+                        },
+                        dataLabels: {
+                          enabled: false
+                        },
+                        xaxis: {
+                          categories: resultStaff,
+                        }
+                      }).render();
+                    });
+                  </script>
+                  <!-- End Bar Chart -->
+                </div>
+              </div>
+                </div>
 
     </div>
   </main><!-- End #main -->
