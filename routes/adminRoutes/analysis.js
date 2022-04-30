@@ -162,7 +162,7 @@ router.post("/course", async (req, res, next) => {
   var courses = await Course.find({
     acadyear: req.body.acadyear,
     department: req.body.department,
-    staff: req.body.staff,
+    staff: { $regex: new RegExp(req.body.staff, "i") },
   }).exec();
 
   var staffs = await Course.find().distinct("staff").exec();
@@ -247,6 +247,8 @@ router.post("/course", async (req, res, next) => {
       return res.render("adminViews/analysis/course", {
         avgs: {},
         noents: true,
+        staffs: staffs,
+        compareStats: compareStats,
         dates: [date1, date2],
       });
     }
