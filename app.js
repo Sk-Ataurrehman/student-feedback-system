@@ -18,9 +18,6 @@ try {
   console.log(error, "could not connect to database.");
 }
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-
 //Admin Routes
 const adminLogin = require("./routes/adminRoutes/login");
 const adminLogout = require("./routes/adminRoutes/logout");
@@ -73,9 +70,6 @@ app.use("/student-feedback/login", studentLogin);
 app.use("/student-feedback/dashboard", studentDashboard);
 app.use("/student-feedback/logout", studentLogout);
 app.use("/student-feedback/feedbacks", StudentfeedbackRoutes);
-
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
