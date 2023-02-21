@@ -18,6 +18,7 @@ router.post("/", (req, res, next) => {
       } else {
         bcrypt.compare(req.body.password, admin[0].password, (err, result) => {
           if (err) {
+            console.log("errror");
             res.render("adminViews/login", { valErr: true });
           }
           if (result) {
@@ -25,6 +26,7 @@ router.post("/", (req, res, next) => {
             req.session.loggedIn = true;
             res.redirect("/admin-feedback/dashboard");
           } else {
+            console.log("else");
             res.render("adminViews/login", { valErr: true });
           }
         });
